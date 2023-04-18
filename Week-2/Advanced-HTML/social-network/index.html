@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Practice exercise to create HTML Forms" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Join a Social Network</title>
+  </head>
+  <body>
+    <!--Join Social Network Section -->
+    <section class="social-join">
+      <!-- Form Heading -->
+      <h1>Join a Social Network</h1>
+      <!-- Form to collect Details to join -->
+      <form method="post" action="https://www.example/action.php" enctype="multipart/form-data">
+        <!-- Input to get full name -->
+        <div class="form-group">
+          <label for="fullName"> Full name: </label>
+          <input type="text" name="fullName" id="fullName" required />
+        </div>
+        <!-- Input to get Email address -->
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" name="email" id="email" required />
+        </div>
+        <!-- Input for About you -->
+        <div class="form-group">
+          <label for="about">About you:</label>
+          <textarea name="about" id="about" cols="50" rows="3"></textarea>
+        </div>
+        <!-- Input to get photo -->
+        <div class="form-group">
+          <label for="picture">Photo:</label>
+          <input type="file" accept="image/*" name="picture" id="picture" alt="" />
+        </div>
+        <!-- submit button -->
+        <div>
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
