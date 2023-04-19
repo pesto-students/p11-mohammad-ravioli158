@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Practice exercise for HTML Forms" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Happy Birthday Message Creator</title>
+  </head>
+  <body>
+    <!-- Birthday details Section -->
+    <section class="birthday-details-section">
+      <form method="post" action="https://www.example/action.php" enctype="multipart/form-data">
+        <h1>Happy Birthday Message Creator</h1>
+        <!-- Input to get birthday message -->
+        <div class="form-group">
+          <label for="message">Message?</label>
+          <input type="text" name="message" id="message" required />
+        </div>
+        <!-- Input to get email address -->
+        <div class="form-group">
+          <label for="email">Email?</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="name@domain.com"
+            pattern="[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
+            required
+          />
+        </div>
+        <!-- Input to get Date to send the birthday message -->
+        <div class="form-group">
+          <label for="date">Date to send?</label>
+          <input type="date" name="date" id="date" format="mm/dd/yyyy" />
+        </div>
+        <!-- Input to get Message color -->
+        <div class="form-group">
+          <label for="color">Message color?</label>
+          <input type="color" name="color" id="color" />
+        </div>
+        <!-- Input to get number of blinks -->
+        <div class="form-group">
+          <label for="blinks">Number of blinks?</label>
+          <input type="number" name="blinks" id="blinks" min="0" max="10" value="0" />
+        </div>
+        <!-- Input to get music volumne -->
+        <div class="form-group">
+          <label for="volume">Music volume?</label>
+          <input class="slider" type="range" name="volume" id="volume" min="0" max="50" value="20" />
+        </div>
+        <!-- Submit birthday details -->
+        <div class="form-group">
+          <input type="submit" value="Send Birthday Message" />
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
