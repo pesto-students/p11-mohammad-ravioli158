@@ -1,0 +1,9 @@
+/* common css for all html pages */
+body {
+  min-height: 100%;
+}
+footer {
+}
+.fa-star, .fa-star-half-o {
+  color: orange;
+}
