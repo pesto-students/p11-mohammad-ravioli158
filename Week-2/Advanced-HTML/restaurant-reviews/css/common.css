@@ -9,16 +9,16 @@ footer {
   color: orange;
 }
 /* Style for Navigation */
-nav ul {
+.navigation ul {
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: left;
 }
-nav li {
+.navigation li {
   display: inline-block;
 }
-nav a {
+.navigation a {
   color: #3366cc;
   padding: 5px;
 }
