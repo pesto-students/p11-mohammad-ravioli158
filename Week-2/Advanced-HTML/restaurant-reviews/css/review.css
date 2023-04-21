@@ -1,0 +1,14 @@
+/* CSS for review form */
+.review-form {
+  display: flex;
+  flex-direction: column;
+}
+.review-form .form-group {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+/* Equal width for labels */
+.review-form .form-group label {
+  flex-basis: 100px;
+}
