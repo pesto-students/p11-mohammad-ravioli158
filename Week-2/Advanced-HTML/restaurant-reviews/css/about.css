@@ -1,0 +1,17 @@
+.about-address {
+  line-height: 1.5;
+  margin-bottom: 1em;
+}
+.street-address {
+  white-space: normal;
+  text-align: left;
+}
+
+.about-address a {
+  text-decoration: none;
+}
+
+.about-address a::after {
+  content: "\a";
+  white-space: pre;
+}
