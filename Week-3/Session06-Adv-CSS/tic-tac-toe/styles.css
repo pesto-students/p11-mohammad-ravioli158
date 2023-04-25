@@ -14,8 +14,15 @@ body {
 #board {
   font: 85px arial, sans-serif;
   margin: 3px;
-
-  /* Your solution goes here */
+  /* Grid for 3 by 3 layout */
+  display: grid;
+  /* set column and row height to 100px */
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  /* gap between rows and columsn 8px */
+  gap: 8px;
+  /* grid items at center of grid */
+  justify-content: center;
 }
 
 #board > div {
