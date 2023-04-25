@@ -1,64 +1,74 @@
 .table {
-    width: 400px;
-    height: 300px;
- 
-    /* Part of your solution goes here */
-    
- }
- 
- .cardRed {
-    color: red;
- }
- 
- .cardBlack {
-    color: black;
- }
- 
- .card {
-    background-color: whitesmoke;
-    border: 1px solid black;         
-    width: 100px;
-    height: 160px;
-    line-height: 160px;
-    text-align: center;
-    font-size: 80px;
- 
-    /* Part of your solution goes here */
- 
- }      
- 
- .cardTop {
-    /* Part of your solution goes here */
- 
- }
- 
- .cardBottom {
-    /* Part of your solution goes here */
- 
- }
- 
- .heart {
-    color: red;
-    font-size: 28px; 
-    width: 30px;
-    height: 30px;  
-    line-height: 30px;
- }
- 
- .spade {
-    color: black;
-    font-size: 36px; 
-    width: 30px;
-    height: 30px;  
-    line-height: 30px;
- }
- 
- .topLeft {
-    /* Part of your solution goes here */
- 
- }
- 
- .bottomRight {
-    /* Part of your solution goes here */
- 
- }F
+  width: 400px;
+  height: 300px;
+  /* line-gradient background top to bottom  for table */
+  background-image: linear-gradient(forestgreen, darkgreen);
+}
+
+.cardRed {
+  color: red;
+}
+
+.cardBlack {
+  color: black;
+}
+
+.card {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  width: 100px;
+  height: 160px;
+  line-height: 160px;
+  text-align: center;
+  font-size: 80px;
+  /* border radius and box shadow */
+  border-radius: 5px;
+  box-shadow: 3px 3px black;
+}
+
+.cardTop {
+  /* position 35% left of table */
+  left: 35%;
+  /* Relative so that child heart or spade class element can be set absolute to it */
+  position: relative;
+  top: 30%;
+  /* card top appears on above of carbotton whose zindex is 0 by default */
+  z-index: 1;
+}
+
+.cardBottom {
+  position: relative;
+  /* relative to the table container */
+  top: -50px;
+  left: 56%;
+}
+
+.heart {
+  color: red;
+  font-size: 28px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.spade {
+  color: black;
+  font-size: 36px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+/* Position the element relative to the parent, top and left 5px  */
+.topLeft {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+/* Position the element relative to the parent, bottom and right 5px  */
+.bottomRight {
+  /* absolute to non-static parent i.e card */
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
