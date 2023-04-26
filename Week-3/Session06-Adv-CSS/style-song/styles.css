@@ -1,0 +1,51 @@
+p:nth-child(5) {
+  background: revert;
+  box-shadow: revert;
+  padding: revert;
+}
+
+a {
+  font-size: 12px;
+}
+
+/* Add styles here */
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: radial-gradient(circle, white, lightgray);
+}
+
+/** 
+* Lyrics Heading 
+*/
+h1 {
+  /* Display & Box Model */
+  padding: 8px;
+
+  /* Other */
+  color: darkblue;
+  text-shadow: 5px 5px 6px gray;
+}
+
+/** 
+* Styles for verse
+* 1. 5px x and y offset for shadow. 6px offset radius and gray color for shadow
+* 2. linear gradient from darkblue to skyblue. starts from top left to bottom right  
+*/
+p {
+  /* Display & Box Model */
+  width: 350px;
+  padding: 10px;
+  /* 1.  */
+  box-shadow: 5px 5px 6px gray;
+  border-radius: 5px;
+
+  /* Other */
+  color: white;
+  /* 2. */
+  background-image: linear-gradient(to bottom right, darkblue, skyblue);
+}
