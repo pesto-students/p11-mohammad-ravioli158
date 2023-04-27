@@ -13,6 +13,8 @@
     <main>
       <h2>Egypt</h2>
 
+      <!-- It provides three versions of the image with file names "egypt_600.jpg", "egypt_1200.jpg", and "egypt_1800.jpg". 
+      Each version is assigned a width descriptor that specifies the width of the image at that resolution, for example, "600w" means the image is 600 pixels wide.  -->
       <img
         src="egypt_600.jpg"
         srcset="egypt_600.jpg 600w, egypt_1200.jpg 1200w, egypt_1800.jpg 1800w"
@@ -27,6 +29,7 @@
         <strong>Great Sphinx</strong>!
       </p>
 
+      <!-- The image will be 600px wide if the viewport width is at least 700px, 400px wide if the viewport is at least 500px, and 200px wide otherwise. -->
       <img
         src="luxor_600.jpg"
         srcset="luxor_600.jpg 600w, luxor_800.jpg 800w, luxor_1200.jpg 1200w"
@@ -55,9 +58,11 @@
           </p>
         </li>
       </ul>
-
-      <!-- TODO: Add <picture> -->
-      <img src="hotel_narrow.jpg" alt="Hotel" class="stretch-image" />
+      <!-- On screen width >= 500, use hotel_wide.jpg and defaults to hotel_narrow.jpg -->
+      <picture>
+        <source media="(min-width: 500px)" srcset="hotel_wide.jpg" />
+        <img src="hotel_narrow.jpg" alt="Hotel" class="stretch-image" />
+      </picture>
     </main>
     <footer>
       <p>
