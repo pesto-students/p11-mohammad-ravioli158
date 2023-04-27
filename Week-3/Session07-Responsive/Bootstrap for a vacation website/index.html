@@ -153,15 +153,19 @@
             id="send-message-btn"
             type="button"
             class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#contact-modal"
+            data-bs-toggle="modal"
+            data-bs-target="#contact-modal"
           >
             Send a message
           </button>
         </p>
-
-        <!-- Add Bootstrap Alert here -->
-
+        <!-- Alert to show success message for 'contact' -->
+        <div
+          class="alert alert-success collapse col-12 col-sm-8 col-md-6 col-lg-4"
+          id="conf-alert"
+        >
+          <strong>Thank you!</strong> We will contact you soon!
+        </div>
         <p>Or call us at <a href="tel:1-800-111-2222">1-800-111-2222</a>.</p>
 
         <div
