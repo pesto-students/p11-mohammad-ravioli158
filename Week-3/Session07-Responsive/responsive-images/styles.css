@@ -27,4 +27,10 @@ header>h1 {
    width: 95vw;
 }
 
-/* TODO: Add ul rule to show check.svg in background */
+/* add check.svg to background of unordered list and hook it to center. without repeating. */
+ul {
+   background-image: url(check.svg);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 60vw;
+}
