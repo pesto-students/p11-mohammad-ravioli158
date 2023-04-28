@@ -11,8 +11,31 @@
       div {
         margin-bottom: 5px;
       }
+      form label {
+        /* Display & Box Model */
+        display: inline-block;
+        width: 120px;
 
-      /* Your solution goes here */
+        /* Others */
+      }
+      form input,
+      textarea {
+        width: 300px;
+        padding: 10px;
+      }
+
+      form input[type="submit"] {
+        width: auto;
+      }
+
+      .required::after {
+        color: red;
+        content: "*";
+      }
+      /* Select adjacent sibling of label which are input */
+      form label ~ input {
+        background-color: #dbf1f8;
+      }
     </style>
   </head>
   <body>
