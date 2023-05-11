@@ -1,0 +1,290 @@
+:root {
+    --accent-color: #0b5563;
+    --text-black: #333333;
+    --text-light: #666666;
+    -breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+}
+
+/* Include Poppins font */
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-display: fallback;
+}
+
+/* Reset Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Styles */
+html,
+body {
+    font-size: 14px;
+    height: 100%;
+}
+
+body {
+    font-family: 'Popping', sans-serif;
+    font-weight: normal;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: bold;
+}
+
+p {
+    font-weight: 300;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+/* Page Wrapper */
+.page-container {
+    position: relative;
+    min-height: 100%;
+    background-color: #f5f5f5;
+    padding: 4rem 40px 8rem;
+    overflow: auto;
+}
+
+
+/* Website Header */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    padding: 10px 20px;
+    font-size: 1.28rem;
+    color: #666666;
+    box-shadow: 0 -1px 5px lightgray;
+    background-color: white;
+    height: 4rem;
+}
+
+.site-header .logo {
+    color: #222222;
+}
+
+.site-header .mobile-menu-toggle {
+    background-color: inherit;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.site-header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo {
+    width: 30px;
+    height: auto;
+    margin-right: 8px;
+}
+
+.site-nav {
+    /*Disable horizontal scrolling*/
+    overflow-x: hidden;
+    position: fixed;
+    top: 4rem;
+    width: 0;
+    right: 0;
+    height: 100%;
+    background-color: #fff;
+    transition: all 0.5s;
+    z-index: 99;
+    box-shadow: 0 0 70px 0 rgba(80, 45, 45, 0.08);
+}
+
+.nav-links {
+    list-style: none;
+
+    margin: 0 30px;
+    color: var(--text-black)
+}
+
+
+.show-nav {
+    width: 75%;
+}
+
+.nav-link {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-right: 40px;
+}
+
+.nav-link a {
+    line-height: 3.3rem;
+}
+
+/* Website Footer */
+.site-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 45px;
+    margin: 60px 0 0;
+    background-color: #fcfcfc;
+    text-align: center;
+    font-size: 1rem;
+    border-top: 2px solid #f2f2f2;
+}
+
+.site-footer .footer-social {
+    margin: 12px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.site-footer .footer-social-link {
+    display: inline-block;
+    opacity: 0.6;
+    padding: 0 10px;
+
+}
+
+/* Button */
+.btn {
+    background-color: inherit;
+    color: #222;
+    padding: 12px 35px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: center;
+    user-select: none;
+    border: 2px solid var(--accent-color);
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px 0 darkgray;
+}
+
+/* Form Controls*/
+.form-group {
+    position: relative;
+    margin: 0 0 1rem;
+}
+
+.form-control {
+    width: 100%;
+    position: relative;
+    border: 2px solid #bfbfbf;
+    border-radius: 5px;
+    display: block;
+    font-size: 1em;
+    margin: 0;
+    padding: 10px 25px 10px 12px;
+    text-align: left;
+    color: inherit;
+    background: 0 0;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control:focus-visible, .form-control:focus
+{
+border:2px solid var(--accent-color);
+}
+/* TODO: Problem with Border color animations*/
+
+.help-error{
+
+}
+
+/* Tablet and above*/
+@media screen and (min-width: 768px) {
+    .page-container {
+        min-height: 100%;
+    }
+
+    /*Header*/
+    .show-nav {
+        width: 35%;
+    }
+
+    /*Main Content*/
+    .index-main {
+        height: 100%;
+    }
+
+    /*Footer*/
+    .footer-social {
+        font-size: 1rem;
+    }
+}
+
+/* Laptop and above*/
+@media screen and (min-width: 1024px) {
+    /*    Header */
+    .site-header {
+        position: absolute;
+        font-size: 1.5rem;
+    }
+
+    /*Show nav in header */
+    .site-nav {
+        text-align: right;
+        position: static;
+        width: 100%;
+        background-color: inherit;
+    }
+
+    .nav-link {
+        display: inline-block;
+    }
+
+
+    .mobile-menu-toggle {
+        display: none;
+    }
+    main {
+    max-width: 1280px;
+        margin: auto;
+    }
+}
