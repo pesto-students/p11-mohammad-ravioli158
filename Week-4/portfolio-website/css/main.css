@@ -2,10 +2,9 @@
     --accent-color: #0b5563;
     --text-black: #333333;
     --text-light: #666666;
-    -breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
+    --breakpoint-lg: 1024px;
     --breakpoint-xl: 1200px;
 }
 
@@ -238,7 +237,7 @@ border:2px solid var(--accent-color);
 }
 
 /* Tablet and above*/
-@media screen and (min-width: 768px) {
+@media screen and (min-width: var(--breakpoint-md)) {
     .page-container {
         min-height: 100%;
     }
@@ -260,7 +259,7 @@ border:2px solid var(--accent-color);
 }
 
 /* Laptop and above*/
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: var(--breakpoint-lg)) {
     /*    Header */
     .site-header {
         position: absolute;
