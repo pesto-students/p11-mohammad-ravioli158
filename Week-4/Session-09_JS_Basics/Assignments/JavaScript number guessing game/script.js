@@ -1,3 +1,6 @@
+/* Function facilitates a game where a number is given to guess and total number of attemps to guess instanceof.
+@param {number} numToGuess - The number to be guessed
+@param {number} totalGuess - Max allowed guesses with default value 10 */
 function playGuessingGame(numToGuess, totalGuesses = 10) {
   let guessCount = 0;
   let guess = 0;
