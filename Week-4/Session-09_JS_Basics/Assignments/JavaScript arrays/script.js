@@ -1,4 +1,3 @@
-
 function divideArray(numbers) {
   // Sort numbers in ascending order
   const sortedNums = numbers.sort((a, b) => a - b);
