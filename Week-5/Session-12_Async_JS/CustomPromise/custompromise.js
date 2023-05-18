@@ -9,23 +9,79 @@
 
 class CustomPromise {
   constructor(executor) {
-    // Your code here
+    // Initial state is pending
+    this.state = "pending";
+    // queue to stoer callback from 'then' on successfull resolve
+    this.callbackQueue = [];
+    // error handling, initial setup to blank function. updated with caller callback of catch for error handline
+    this.onRejected = () => {};
+    //bind resolve and reject to current object of Promise
+    this.onResolve = this.onResolve.bind(this);
+    this.onReject = this.onReject.bind(this);
+
+    executor(this.onResolve, this.onReject);
+  }
+
+  onResolve(value) {
+    try {
+      //Resolved and update state
+      this.state = "fulfilled";
+      this.value = value; // Store the resolved value
+      // execute the callbacks in the queue now.
+      this.callbackQueue.forEach((callback) => {
+        // the previous value is used for next chain
+        this.value = callback(this.value); // Pass the value through the promise chain
+      });
+    } catch (error) {
+      //clear further chains if error occurs
+      this.callbackQueue = [];
+      this.onReject(error);
+    }
+  }
+
+  onReject(error) {
+    //update state and pass error handling callback to be executed
+    this.state = "rejected";
+    this.onRejected(error);
   }
 
   then(onFulfilled, onRejected) {
-    // Your code here
+    //incase of already fullfilled execute the promise logic here or else when not fulfilled push to queue.
+    // handles the case, when promise resolves or rejects synchronously
+    return new CustomPromise((resolve, reject) => {
+      const callback = () => {
+        try {
+          if (typeof onFulfilled === "function") {
+            const result = onFulfilled(this.value); // Execute the onFulfilled callback with the resolved value
+            resolve(result); // Resolve the new promise with the result of the callback
+          } else {
+            resolve(this.value); // Resolve the new promise with the resolved value
+          }
+        } catch (error) {
+          reject(error); // Reject the new promise if an error occurs
+        }
+      };
+
+      if (this.state === "fulfilled") {
+        // If promise is already fulfilled, execute the callback immediately,
+        callback();
+      } else {
+        this.callbackQueue.push(callback);
+      }
+    });
   }
 
   catch(onRejected) {
-    // Your code here
+    this.onRejected = onRejected;
+    return this;
   }
 
   static resolve(value) {
-    // Your code here
+    return new CustomPromise((resolve) => resolve(value));
   }
 
   static reject(reason) {
-    // Your code here
+    return new CustomPromise((resolve, reject) => reject(reason));
   }
 }
 
@@ -45,26 +101,26 @@ class CustomPromise {
 // Here's an example of how to use your implementation:
 
 const myPromise = new CustomPromise((resolve, reject) => {
-  // Resolve the Promise after 1 second
+  //Resolve the Promise after 1 second
   setTimeout(() => {
     resolve("Success!");
   }, 1000);
 });
 
-// myPromise
-//   .then((result) => {
-//     console.log(result); // Output: Success!
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+myPromise
+  .then((result) => {
+    console.log(result); // Output: Success!
+  })
+  .catch((error) => {
+    console.error("error", error);
+  });
 
-//   You can also test your implementation by creating a Promise that rejects, and using the catch method to handle the error:
-// const myPromise = new CustomPromise((resolve, reject) => {
-//   // Reject the Promise immediately
-//   reject("Error!");
-// });
+// //   You can also test your implementation by creating a Promise that rejects, and using the catch method to handle the error:
+const myPromise1 = new CustomPromise((resolve, reject) => {
+  // Reject the Promise immediately
+  resolve("Error!");
+});
 
-// myPromise.catch((error) => {
-//   console.error(error); // Output: Error!!
-// });
+myPromise1.then((error) => {
+  console.log("error", error); // Output: Error!!
+});
