@@ -47,10 +47,17 @@ class ScientificCalculator extends Calculator {
 
 const scientificCal = new ScientificCalculator();
 // Invoke add using call
-console.log(scientificCal.add.call(new Calculator(), 10, 5));
+
+console.log(scientificCal.add.call(this, 10, 5));
 
 // Invoke subtract using apply method
-console.log(scientificCal.subtract.apply(new Calculator(), [10, 5]))
+console.log(scientificCal.subtract.apply(this, [10, 5]));
 
 // function multiplies a number with 2 and returns it
-//  TODO: Do not understant context of call, apply and bind in terms of class
+
+const multiplyByTwo = scientificCal.multiply.bind(scientificCal, 2);
+console.log(multiplyByTwo(4));
+
+//using bind implement powerOfThree
+const powerOfThree = scientificCal.power.bind(scientificCal, 3);
+console.log(powerOfThree(2)); //Output 3 * 3 = 9
