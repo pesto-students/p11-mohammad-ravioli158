@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with window object</title>
+  </head>
+  <body></body>
+  <!-- JavaScript code to display window properties -->
+  <script>
+    function displayWindowProperties() {
+      // Displaying the user agent string of the browser
+      console.log(navigator.userAgent);
+
+      // Displaying the screen width and height
+      console.log(screen.width, screen.height);
+
+      // Displaying the current URL and path
+      console.log(location.href, location.pathname);
+
+      // Displaying the sessionStorage and localStorage objects
+      console.log(sessionStorage, localStorage);
+    }
+
+    // Call the function to display window properties
+    displayWindowProperties();
+  </script>
+</html>
