@@ -1,0 +1,121 @@
+/*Make it circular and take 50% width of container in small devices.*/
+#home-photo {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    border: 14px solid #fff;
+    box-shadow: 0 0 5px 0 lightgray;
+}
+
+.index-main {
+    padding: 0 10px;
+    color: var(--text-light);
+    margin: 0 auto;
+}
+
+/* Content is a flex with two flex items arranged in column in small devices*/
+.index-content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.picture-wrapper {
+    text-align: center;
+}
+
+.profile-picture {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 60%;
+}
+
+
+.text-wrapper {
+    text-align: center;
+}
+
+.profile-title {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--text-black);
+    font-size: 2rem;
+}
+
+.profile-text {
+    line-height: 1.75rem;
+}
+
+.text-editor-wrap {
+    max-width: 350px;
+    text-align: left;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 1px 4px;
+}
+
+.editor-title {
+    background-color: #f8f8f8;
+    height: 15px;
+    border-bottom: #6a6a6a 1px solid;
+    box-shadow: inset rgba(255, 255, 255, 0.7) 0 1px 1px;
+    background-image: linear-gradient(to top, #e8e8e8, #bcbbbc);
+
+}
+
+.editor-body {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    height: 8rem;
+    color: #f0f0f0;
+    text-shadow: #000 0 1px 0;
+    transition: all 0.5s ease-out;
+}
+
+/* Styles for tablet i.e >= 768px*/
+
+@media screen and (min-width: 768px) {
+    .index-content {
+        flex-direction: row-reverse;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /*    picture wrapper and text wrapper take equal space and arranged in a row*/
+    .picture-wrapper {
+        flex-basis: 50%;
+    }
+
+    .text-wrapper {
+        flex-basis: 50%;
+        text-align: left;
+    }
+
+    .profile-picture {
+        width: 70%;
+    }
+
+    .profile-title {
+        text-align: left;
+    }
+
+}
+
+
+/* Laptops */
+@media screen and (min-width: 1024px) {
+    .index-main
+    {
+        padding: 0 5rem;
+        max-width: 1260px;
+    }
+    .picture-wrapper{
+        flex-basis: 40%;
+    }
+    .text-wrapper
+    {
+        flex-basis: 40%;
+    }
+
+}

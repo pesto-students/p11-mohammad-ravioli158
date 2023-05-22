@@ -1,0 +1,25 @@
+.contact-heading {
+    margin: 1rem 0;
+    color: var(--text-black)
+}
+
+
+@media screen and (min-width: 768px){
+    .contact-main{
+        margin-top: 5rem;
+    }
+    .contact-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 20px;
+    }
+    .contact-col-2 {
+        text-align: center;
+    }
+    .contact-heading
+    {
+        text-align: center;
+    }
+}
+
