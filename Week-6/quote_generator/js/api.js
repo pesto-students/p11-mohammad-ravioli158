@@ -1,5 +1,5 @@
 const API_ENDPOINT = "https://api.openai.com/v1/completions";
-const API_KEY = "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"; // Use environment variable for API key
+const API_KEY = "api-key-here"; // Use environment variable for API key
 
 async function generateQuotes(topic) {
   try {
