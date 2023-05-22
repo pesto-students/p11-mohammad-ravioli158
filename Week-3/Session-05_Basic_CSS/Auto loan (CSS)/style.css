@@ -1,0 +1,84 @@
+body {
+  font-family: "Roboto", "Helvetica", sans-serif;
+}
+
+/**
+* Offers Section
+*/
+.container {
+  /* Display & Box Model */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Offers heading */
+.container > h1 {
+  /* Display & Box Model */
+  flex-basis: 100%; /* Take full width of container i.e 1st row */
+
+  /* Others */
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/** 
+* Offer Container 
+*/
+.offer {
+  border: 2px solid #e1e1e1;
+}
+
+.offerTitle {
+  /* Display & Box Model */
+  padding: 0.7rem;
+  /* Others */
+  text-align: center;
+  background-color: #2bb3b2;
+  color: white;
+  font-weight: bold;
+}
+
+.offerContents {
+  /* Display & Box Model */
+  padding: 1.1rem;
+  /* Others */
+  background-color: #fafafa;
+}
+
+.offerContents > table {
+  /* Diplay & Box Model */
+  width: 100%;
+  /* Others */
+  background-color: white;
+  border-collapse: collapse;
+}
+
+.offerContents * {
+  /* Display & Box Model */
+
+  /* Others */
+  text-align: left;
+}
+
+.offerContents tr {
+  /* Display & Box Model */
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.offerContents > table th {
+  /* Others */
+  padding: 0.6rem;
+  color: #7a7978;
+  font-weight: bold;
+}
+
+.offerContents > table td {
+  padding: 1rem;
+  color: #4d4d4d;
+}
+
+.offerContents .finalValue {
+  color: #691afe;
+}

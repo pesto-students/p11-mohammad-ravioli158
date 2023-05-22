@@ -1,0 +1,39 @@
+.header-logo {
+    height: auto;
+    width: 290px;
+}
+
+.news-heading {
+    /* Display & Box Model */
+    padding: 0.2rem 0.5rem;
+    /* Others */
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: red;
+    color: white;
+    font-size: 1.5rem;
+
+}
+
+#author-name-and-date {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7 rem;
+    color: lightgrey;
+    font-weight: bold;
+}
+
+.news-image {
+    width: 300px;
+    height: auto;
+}
+
+.news-content {
+    font-family: 'Times New Roman', Times, serif;
+    color: gray;
+    font-size: 1rem;
+}
+
+.share-links>a {
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}

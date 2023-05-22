@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/review.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <title>Add Review</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Restaurant Reviews</h1>
+      <!-- Website Navigation -->
+      <nav class="navigation">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">Add Review</a></li>
+          <li><a href="">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- Review Section -->
+      <section class="review-section">
+        <form class="review-form" action="post" class="review-form">
+          <header><h2>Add Review</h2></header>
+          <div class="form-group">
+            <label for="fullName">Name?</label>
+            <input type="text" name="fullName" id="fullName" required />
+          </div>
+          <div class="form-group">
+            <label for="restaurantName">Restaurant?</label>
+            <select name="restaurantName" id="restaurantName" required>
+              <!-- Option to use as placeholder -->
+              <option value="" disabled selected hidden>Choose one</option>
+              <option value="main street cafe">Main Street Cafe</option>
+              <option value="greek house">Greek House</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Date to vist?</label>
+            <input type="date" name="date" id="date" />
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating?</label>
+            <input type="number" name="rating" id="rating" max="5" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="details">Details?</label>
+            <textarea name="details" id="details" cols="30" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      </section>
+    </main>
+    <!-- Website Footer -->
+    <footer>
+      <p>© 2022 Restaurant Reviews</p>
+    </footer>
+  </body>
+</html>

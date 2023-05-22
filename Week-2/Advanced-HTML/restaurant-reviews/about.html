@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/review.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <title>About</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Restaurant Reviews</h1>
+      <!-- Website Navigation -->
+      <nav class="navigation">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">Add Review</a></li>
+          <li><a href="">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="about-section">
+        <!-- About -->
+        <h2>About</h2>
+        <p>Restaurant reviews is a website that collects user reviews for restaurants.</p>
+      </section>
+      <!-- Disclaimer -->
+      <section class="disclaimer">
+        <h2>Disclaimer</h2>
+        <p>
+          All reviews on this website are written by our website users and should not be regarded as an endorsement of
+          any particular restaurant by Restaurant Reviews.
+        </p>
+      </section>
+      <!-- Contact Details -->
+      <article class="contact-us">
+        <h2>Contact Us</h2>
+        <address>
+          Email: <a href="mailto:restaurantreviews@email.com">restaurantreviews@email.com</a><br />
+          Phone: <a href="tel:111-222-333">111-222-333</a>
+          <br />
+          <br />
+          Restaurant Reviews <br />
+          7361 Curry Ford Rd <br />
+          Orlando, FL 3822 <br />
+        </address>
+        <!-- Address Map -->
+        <div class="map-container">
+          <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+            <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+            <script>
+              (function () {
+                var setting = {
+                  height: 400,
+                  width: 400,
+                  zoom: 17,
+                  queryString: "8JW4+FJ6, Sungava, Gangtok, Sikkim 737101, India",
+                  place_id: "ChIJDVtYsjGl5jkRdfgxwrvIzc4",
+                  satellite: false,
+                  centerCoord: [27.346125008212624, 88.6065465],
+                  cid: "0xc91a7c7937851a6b",
+                  lang: "en",
+                  id: "map-9cd199b9cc5410cd3b1ad21cab2e54d3",
+                  embed_id: "915984",
+                };
+                var d = document;
+                var s = d.createElement("script");
+                s.src = "https://1map.com/js/script-for-user.js?embed_id=915984";
+                s.async = true;
+                s.onload = function (e) {
+                  window.OneMap.initMap(setting);
+                };
+                var to = d.getElementsByTagName("script")[0];
+                to.parentNode.insertBefore(s, to);
+              })();
+            </script>
+            <a href="https://1map.com/map-embed">1 Map</a>
+          </div>
+        </div>
+      </article>
+    </main>
+    <!-- Website Footer -->
+    <footer>
+      <p>© 2022 Restaurant Reviews</p>
+    </footer>
+  </body>
+</html>

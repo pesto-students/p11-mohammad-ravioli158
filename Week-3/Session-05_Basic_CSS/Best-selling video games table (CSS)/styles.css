@@ -1,0 +1,37 @@
+:root {
+   --table-color: forestgreen;
+   --row-bg-color: honeydew;
+   font-family: Calibri, Myriad;
+}
+
+#game-table {
+   /* Display & Box Model */
+   border: 2px solid var(--table-color);
+   /* Others */
+   text-align: center;
+}
+
+/* Table Caption */
+#game-table>caption {
+   /* Display & Box Model */
+   padding: 0.8rem;
+   /* Others */
+   font-size: 1.2rem;
+   text-transform: uppercase;
+   color: white;
+   background-color: var(--table-color);
+}
+
+/* Table Heading */
+#game-table th {
+   padding: 0.8rem;
+}
+
+#game-table td {
+   padding: 0.7rem;
+}
+
+/* row-bg-color for even table rows */
+#game-table tr:nth-child(2n) {
+   background-color: var(--row-bg-color);
+}

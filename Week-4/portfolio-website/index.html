@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="css/main.css" rel="stylesheet"/>
+    <link href="css/index.css" rel="stylesheet"/>
+    <script src="js/main.js"></script>
+    <!-- Font Awesome -->
+    <script
+            crossorigin="anonymous"
+            integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow=="
+            referrerpolicy="no-referrer"
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+    ></script>
+    <!--    Typed.js-->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <link
+            crossorigin="anonymous"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            referrerpolicy="no-referrer"
+            rel="stylesheet"
+    />
+
+    <title>Ravi Rathore</title>
+</head>
+<body>
+
+<div class="page-container">
+    <!--    Header-->
+    <header class="site-header" id="site-header">
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-symbol">
+                <img alt="website logo R" class="site-logo" src="img/logo.svg"/>
+            </div>
+            <div class="logo-text"><b>Ravi</b> Rathore</div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="site-nav" id="site-nav">
+            <ul class="nav-links">
+                <li class="nav-link"><a href="index.html" target="_parent">About Me</a></li>
+                <li class="nav-link"><a href="resume.html" target="_parent">Resume</a></li>
+                <!--                TODO: Add Portfolio of projects-->
+                <li class="nav-link"><a href="#" target="_parent">Portfolio</a></li>
+                <li class="nav-link"><a href="https://craftycoders.blogspot.com/" target="_parent">Blog</a></li>
+                <li class="nav-link"><a href="contact.html" target="_parent">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Toggle Button -->
+        <button aria-label="toggle mobile menu" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+    <!--    Main-->
+    <main class="index-main">
+        <article class="index-content">
+            <!--            Profile Picture in circular frame with thick border-->
+            <div class="picture-wrapper">
+                <div class="profile-picture">
+                    <img
+                            alt="Profile Picture"
+                            id="home-photo"
+                            src="img/profile-picture-320.jpg"
+                            srcset="
+                              img/profile-picture-320.jpg   320w,
+                              img/profile-picture-425.jpg   425w,
+                              img/profile-picture-640.jpg   640w,
+                              img/profile-picture-1280.jpg 1280w,
+                              img/profile-picture-1920.jpg 1920w,
+                              img/profile-picture-2560.jpg 2560w
+                            "
+                    />
+                </div>
+            </div>
+            <!--            About me description-->
+            <div class="text-wrapper">
+                <h1 class="profile-title">Turning Ideas into Digital Solutions</h1>
+                <div class="text-editor-wrap">
+                    <div class="editor-title"></div>
+                    <div class="editor-body"><span>$ </span>
+                        <span class="profile-text" id="profile-text"></span></div>
+
+                </div>
+                <a class="btn mt-1" href="#" target="_blank">Download CV</a>
+            </div>
+        </article>
+    </main>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-social">
+            <ul class="footer-social">
+                <li class="footer-social-link">
+                    <a
+                            href="https://twitter.com"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                    >Twitter</a
+                    >
+                </li>
+                <li class="footer-social-link">
+                    <a
+                            href="https://instagram.com"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                    >Instagram</a
+                    >
+                </li>
+                <li class="footer-social-link">
+                    <a
+                            href="https://linkedin.com"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                    >LinkedIn</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<!--   Types.Js script-->
+<script>
+    const typedText = new Typed('#profile-text', {
+        strings: ["Namaste! I'm a Full Stack Developer.", "with a passion for JavaScript, Node.js, SQL, and all things Unix.", "When I'm not coding, you can find me hiking in the great outdoors or building elaborate factories in Factorio."],
+        typeSpeed: 50,
+        showCursor: true,
+        startDelay: 2000,
+        contentType: 'html',
+        loop: true,
+    });
+</script>
+</body>
+</html>
