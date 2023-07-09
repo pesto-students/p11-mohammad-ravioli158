@@ -58,3 +58,33 @@ b. If the middle element is equal to the target value, return true.
 c. If the middle element is less than the target value, update "low" to middle + 1.
 d. If the middle element is greater than the target value, update "high" to middle - 1.
 If the loop completes without finding the target value, return false.
+
+## Code
+[Seach in sortedArray](https://leetcode.com/problems/binary-search/submissions/989861840/)
+```
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) {
+    let low = 0;
+    let high = nums.length - 1
+    while( low <= high) {
+        let mid = Math.floor(low  + ( high - low)/2)
+        if(nums[mid] == target)
+        {
+            return mid
+        }else if(nums[mid] < target)
+        {
+            //go right
+            low = mid + 1
+
+        }else {
+            //go left
+            high = mid - 1   
+        }
+    }
+    return -1
+};
+```
