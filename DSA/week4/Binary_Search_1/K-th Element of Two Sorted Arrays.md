@@ -52,3 +52,58 @@ If the count is less than K, update left = mid + 1 to search the right half.
 If the count is greater than or equal to K, update right = mid - 1 to search the left half.
 Repeat steps 3-6 until left becomes greater than right.
 Return left as the K-th smallest element.
+
+## Code
+
+```
+function validate(A,B,k,fromA,fromB)
+    {
+        let l1 = A[fromA-1] ?? Number.NEGATIVE_INFINITY
+        let l2 = B[fromB-1] ?? Number.NEGATIVE_INFINITY
+        let r1 = A[fromA] ?? Number.POSITIVE_INFINITY
+        let r2 = B[fromB] ?? Number.POSITIVE_INFINITY
+        console.log(l1,l2,r1, r2)
+        if(l1 <= r2 && l2 <= r1)
+        {
+            return 0
+        }else if(l1 >r2){
+            return -1
+        }else{
+            return 1
+        }
+    }
+    function kthElement(A,B,n,m,k){ 
+   
+
+        
+        let low = 0 //i take no elements from first array
+        let high = Math.min(n, k - 1) // I take all elements from firstarray
+        while(low <= high){
+            let a = Math.floor(low + (high-low)/2) // if we take a elements from first array
+            let b = k - 1- a // we take k -a - 1 elemetns from second array
+            const result = validate(A, B,k,  a, b)
+            if(result == 0){
+                //if this pair of a,b satiesfies the condition, that is 
+                // When we take a elements from first array and b elemetns from second array, the kth element has all smaller to left and all larger to right
+                return Math.min(A[a], B[b])
+            }else if(result == -1)
+            {
+                high = a - 1
+            }else
+            {
+                low = a + 1
+            }
+        }
+    }
+    
+    // let A =[1,1,1,1]
+    // let B = [0, 0, 0, 0, 0]
+    // let k = 3
+    // let A = [2,3,6,7,9]
+    // let B = [1, 4, 8, 10]
+    // let k = 5
+    let A = [1, 10, 10, 25, 40, 54, 79]
+    let B = [15, 24, 27, 32, 33, 39, 48, 68, 82, 88, 90]
+    let k = 15
+    console.log(kthElement(A,B,A.length,B.length,k))
+```
