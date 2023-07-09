@@ -55,3 +55,40 @@ If midSquared is less than the target number, update start to mid + 1.
 If midSquared is greater than the target number, update end to mid - 1.
 If the loop completes without finding an exact square root, return the value of end 
 rounded to 6 decimal places.
+
+## Code
+
+[LeetCode: Sqrt(x)](https://leetcode.com/problems/sqrtx/submissions/989860523/)
+
+```
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+    if( x < 1 )
+    {
+        return 0
+    }
+    let low = 1 
+    let high = x
+    let ans;
+    while(low <= high)
+    {
+        const mid = Math.floor(low + (high-low)/2)
+        const square = mid * mid
+        if(square == x){
+            return mid
+        }else if(square < x)
+        {
+            // Assign the lowest number closest to square root to the ans.
+            ans = mid
+            low = mid + 1
+        }else{
+            high = mid - 1
+        }
+    }
+    return (Math.floor(ans))
+}
+```
