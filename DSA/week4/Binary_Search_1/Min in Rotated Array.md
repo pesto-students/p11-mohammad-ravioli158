@@ -48,3 +48,41 @@ minimum. In this case, update right = mid.
 Repeat steps 2-4 until left is equal to right. At this point, left (or right) will be pointing
 to the minimum element.
 Return the minimum element.
+
+## Code
+[LeetCode: Minimum is rotated sorted array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/submissions/978388269/)
+
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function(nums) {
+    let low = 0
+    let high = nums.length - 1
+    //if already sorted
+    if(nums[low] <= nums[high])
+    {
+        return nums[low]
+    }
+
+    //if rotated
+    while(low <= high){
+        let mid = Math.floor(low + (high-low)/2)
+        if(nums[mid-1] > nums[mid])
+        {
+            return nums[mid]
+        }
+        else if(nums[low] <= nums[mid] && nums[mid] > nums[high])
+        {
+            //higher part so ignore it and go right
+            low = mid + 1
+            
+        } else{
+            high = mid - 1
+            
+        }
+
+    }
+};
+```
