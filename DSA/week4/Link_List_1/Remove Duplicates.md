@@ -52,3 +52,57 @@ If it is, skip that node by modifying the "next" pointer of the previous node.
 If it is not, add the value to the hash set and move the previous pointer to 
 the current node.
 Finally, return the modified linked list.
+
+## Code
+```
+    
+
+//User function Template for javascript
+
+/**
+ * @param {Node} head
+ * @returns {Node}
+*/
+
+/*
+class Node{
+    constructor(data){
+        this.data = data;
+        this.next = null;
+    }
+}
+*/
+
+class Solution {
+    //Function to remove duplicates from unsorted linked list.
+    removeDuplicates(head)
+    {
+        // use set to track duplicates
+        const set = new Set()
+        
+        let current = head
+        let prev = null
+        while(current)
+        {
+            if(set.has(current.data))
+            {
+                //remove it and prev counter doesnt move
+                if(current.next == null){
+                    prev.next = null
+                }else{
+                    prev.next = current.next
+                }
+                
+             
+            }else{
+                //add it if not already present and move the previous counter
+               set.add(current.data)
+                prev = current
+               
+            }
+             current = current.next
+        }
+        return head
+    }
+}
+```
