@@ -78,3 +78,56 @@ to mid - 1.
 If the matrix element at row and col is less than the target, move the start pointer to 
 mid + 1.
 If the target is not found, return false.
+
+## Code
+[LeetCode: Search in 2d matrix](https://leetcode.com/problems/search-a-2d-matrix/submissions/981648589/)
+
+```
+    /**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+
+const binarySearch = (arr,target) => {
+    let low = 0
+    let high = arr.length - 1
+    while(low <= high)
+    {
+        let mid = Math.floor((low + high)/2)
+        if(arr[mid] == target)
+        {
+            return true
+        }else if(arr[mid] < target)
+        {
+            //go left
+             low = mid + 1
+            
+        }else{
+           high = mid - 1
+        }
+    }
+    return false
+}
+var searchMatrix = function(matrix, target) {
+   //find correct row
+   let low = 0
+   let high = matrix.length - 1
+   while(low <= high)
+   {
+       let mid = Math.floor((high + low)/2)
+       let arr = matrix[mid]
+       if(target >= arr[0] && target <= arr[arr.length-1])
+       {
+           return binarySearch(arr,target)
+       }else if(target < arr[0])
+       {
+           //go left
+           high = mid - 1
+       }else{
+           low = mid + 1
+       }
+   }
+   return false
+};
+```

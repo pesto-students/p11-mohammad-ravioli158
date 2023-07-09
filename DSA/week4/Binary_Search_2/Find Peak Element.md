@@ -67,3 +67,35 @@ If the middle element is greater than both its adjacent elements (nums[middle] >
 If the middle element is smaller than its next element (nums[middle] < nums[middle + 1]), update the start variable to middle + 1 to search in the increasing part of the array.
 Otherwise, update the end variable to middle - 1 to search in the decreasing part of the array.
 Return -1 if no peak element is found.
+
+
+## Code 
+
+[LeetCode: Find Peak Element](https://leetcode.com/problems/find-peak-element/submissions/978459651/)
+
+```
+    /**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findPeakElement = function(nums) {
+    let low = 0
+    let high = nums.length - 1
+    while(low <= high){
+        let mid = Math.floor(low + (high - low) / 2)
+        
+        if((nums.length == 1)||(mid == 0 &&  nums[mid] > nums[mid+1] ) || ( mid == nums.length-1 && nums[mid] > nums[mid-1])) {
+            //if it is start and next is lower || if it is end and previous is lesser
+            return mid
+        } else if( nums[mid] > nums[mid-1] && nums[mid] > nums[mid+1] )
+        {
+            return mid
+        }else if(nums[mid+1] > nums[mid]) {
+            //go right
+            low = mid + 1
+        }else{
+            high = mid - 1
+        }
+    }
+};
+```

@@ -75,3 +75,5 @@ value of coins.
 If possible, update the start variable to middle + 1.
 Otherwise, update the end variable to middle - 1.
 Return the maximum number of coins obtained.
+
+TODO: Solve after dynamic programming session
