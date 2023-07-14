@@ -76,3 +76,65 @@ determine the intersection point.
 Prompt the user to enter elements for both list1 and list2.
 Call the findIntersectionPoint method on list1, passing list2 as an argument.
 Display the intersection point if it exists; otherwise, display "No Intersection Point".
+
+## Code 
+[Leetcode 160: Intersection of Two linked lists](https://leetcode.com/problems/intersection-of-two-linked-lists/submissions/994195717/)
+
+```
+    /**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+function lengthOf(head)
+{
+    let length = 0
+    while(head !== null)
+    {
+        length++
+        head = head.next
+    }
+    return length
+}
+var getIntersectionNode = function(headA, headB) {
+    //find length of headA
+    const lengthA = lengthOf(headA)
+    const lengthB = lengthOf(headB)
+   
+    const diff = Math.abs(lengthA - lengthB)
+    // move the longer linked list diff steps closer,
+   if(lengthA < lengthB)
+    {
+        for(let i = 0 ; i < diff ; i++)
+        {
+            headB = headB.next
+        }
+
+    }else{
+        for(let i = 0 ; i < diff ; i++)
+        {
+            headA = headA.next
+        }
+    }
+    // now both references move forward and will collide at common node
+    while(headA && headB && headA !== headB)
+    {
+        headA = headA.next
+        headB = headB.next
+    }
+    if(headA && headB && headA === headB)
+    {
+        return headA
+    }else{
+        return null
+    }
+};
+```

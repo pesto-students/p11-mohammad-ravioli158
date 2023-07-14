@@ -55,3 +55,32 @@ Implement the insert method in the LinkedList class to add elements to the linke
 If the head is null, set the head to the new node; otherwise, traverse the list until the 
 last node and append the new node.
 Implement the `deleteWithoutHead
+
+
+## Code
+[LeetCode 237: ](https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/994192834/)
+
+
+```
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} node
+ * @return {void} Do not return anything, modify node in-place instead.
+ */
+var deleteNode = function(node) {
+   if(node == null){
+       return
+   }else{
+       // copy value from next node and point  to next of next
+       // thereby making 'node to be deleted' redundant and removable
+       node.val = node.next.val
+       node.next = node.next.next
+   }
+};
+```

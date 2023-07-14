@@ -74,3 +74,60 @@ Implement the subtractLinkedLists function as the main program.
 Prompt the user to enter the elements of the first and second linked lists, 
 create instances of the LinkedList class, insert the elements into the linked lists, 
 perform the subtraction operation, and display the result.
+
+## Code 
+```
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function subtractLinkedLists(list1, list2) {
+  let resultHead = null;
+  let resultTail = null;
+  let carry = 0;
+  let node1 = list1;
+  let node2 = list2;
+
+  // Traverse both linked lists and perform the subtraction operation
+  while (node1 || node2 || carry) {
+    let value1 = node1 ? node1.value : 0;
+    let value2 = node2 ? node2.value : 0;
+    let diff = value1 - value2 - carry;
+
+    if (diff < 0) {
+      // If the difference is negative, adjust the carry and add 10
+      diff += 10;
+      carry = 1;
+    } else {
+      carry = 0;
+    }
+
+    // Create a new node with the result of subtraction
+    let newNode = new Node(diff);
+
+    if (!resultHead) {
+      // If the result list is empty, make the new node as the head
+      resultHead = newNode;
+      resultTail = newNode;
+    } else {
+      // Insert the new node at the end of the result list
+      resultTail.next = newNode;
+      resultTail = newNode;
+    }
+
+    // Move to the next nodes in both linked lists
+    if (node1) {
+      node1 = node1.next;
+    }
+
+    if (node2) {
+      node2 = node2.next;
+    }
+  }
+
+  return resultHead;
+}
+```

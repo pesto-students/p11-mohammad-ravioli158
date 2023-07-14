@@ -68,3 +68,59 @@ Implement the rearrangeLinkedList function as the main program. Prompt the user 
 enter the elements of the linked list, create an instance of the LinkedList class, insert 
 the elements into the linked list, call the rearrangeZigZag method, and display the 
 rearranged linked list.
+
+
+
+
+## Code 
+```
+    // JavaScript program to rearrange a linked list in zigzag fashion
+
+/* Linked list Node */
+class Node {
+  constructor() {
+    this.data = 0;
+    this.next = null;
+  }
+}
+
+
+
+
+
+function zigZag(root) {
+  let isIncreasing = true; 
+
+  
+  let current = root;
+  while (current && current.next) {
+    if (isIncreasing == true) 
+    
+    /* current->next should be larger than current */ {
+     
+      let temp;
+      if (current.data > current.next.data) {
+          //swap current with current next so the order maintains
+        temp = current.data;
+        current.data = current.next.data;
+        current.next.data = temp;
+      }
+    } else /*current.data is lesser than next value */ {
+     
+      if (current.data < current.next.data) {
+          //swap
+        temp = current.data;
+        current.data = current.next.data;
+        current.next.data = temp;
+      }
+    }
+
+    current = current.next;
+
+    /* Flip for the next order */
+    isIncreasing = !(isIncreasing);
+  }
+}
+
+
+```

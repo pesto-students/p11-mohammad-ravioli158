@@ -59,3 +59,77 @@ Implement the display method in the LinkedList class to display the linked list 
 Prompt the user to enter elements (0s, 1s, and 2s only) to insert into the linked list.
 Call the sortLinkedList method to sort the linked list.
 Display the sorted linked list using the display method.
+
+## Code
+```
+class Node{
+    constructor(val) {
+        this.val = val
+        this.next = null
+    }
+}
+
+
+function main() {
+
+    const n = parseInt(readLine())
+    let nodes = readLine().split(' ')
+    
+
+    let zeroStart = null, zeroEnd = null;
+    let oneStart = null, oneEnd = null;
+    let twoStart = null, twoEnd = null;
+
+    for (let val of nodes)
+    {
+        const newNode = new Node(val)
+        switch (val)
+        {
+            case '0':
+                if (zeroStart == null)
+                {
+                    zeroStart = newNode
+                    zeroEnd = newNode
+                } else {
+                    zeroEnd.next = newNode
+                    zeroEnd = newNode
+                }
+                break;
+            case '1':
+                 if (oneStart == null)
+                {
+                    oneStart = newNode
+                    oneEnd = newNode
+                } else {
+                    oneEnd.next = newNode
+                    oneEnd = newNode
+                }
+                break;
+            case '2':
+                 if (twoStart == null)
+                {
+                    twoStart = newNode
+                    twoEnd = newNode
+                } else {
+                    twoEnd.next = newNode
+                    twoEnd = newNode
+                }
+                break;
+        }
+    }
+
+    //zero start is the result
+    // connect zeros to 1s and 1s to 2s
+    zeroEnd.next = oneStart
+    oneEnd.next = twoStart
+    let result = ''
+    while (zeroStart)
+    {
+        result += " "+zeroStart.val
+        zeroStart = zeroStart.next
+    }
+    console.log(result.trim())
+    //return result
+    
+}
+```
