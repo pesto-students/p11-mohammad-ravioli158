@@ -58,3 +58,56 @@ Iterate through each token in the array.
 If the token is an operand (integer), convert it to a number and push it onto the stack.
 If the token is an operator (+, -, *, /), pop two operands from the stack, apply the operator, and push the result back onto the stack.
 After iterating through all the tokens, the stack should contain the final result. Pop the result from the stack and display it.
+
+## Code 
+[](https://leetcode.com/problems/evaluate-reverse-polish-notation/submissions/994824221/)
+
+```
+/**
+ * @param {string[]} tokens
+ * @return {number}
+ */
+var evalRPN = function(tokens) {
+    const stack = []
+    let firstOperand, secondOperand;
+    let result = 0
+    for(let token of tokens)
+    {
+        // if token is numeric add to stack,
+        // if token is operators , pop out two operands from stack,and 
+        // perform operation and put back result to top of stack
+        switch(token){
+            case '+':
+                firstOperand = parseInt(stack.pop())
+                secondOperand = parseInt(stack.pop())
+                 result = firstOperand + secondOperand
+                stack.push(result)
+            break;
+            case '-':
+                firstOperand = parseInt(stack.pop())
+                secondOperand =parseInt(stack.pop())
+                 result =  secondOperand - firstOperand
+                stack.push(result)
+            break;
+            case '*':
+                firstOperand =parseInt(stack.pop())
+                secondOperand = parseInt(stack.pop())
+                 result = firstOperand * secondOperand
+                stack.push(result)
+            break;
+            case '/':
+                firstOperand = parseInt(stack.pop())
+                secondOperand = parseInt(stack.pop())
+                 result = parseInt(secondOperand/firstOperand)
+                stack.push(result)
+            break;
+            default:
+            stack.push(token)
+            
+        }
+        
+    }
+    //the only left value is result of operations
+    return stack.pop()
+};
+```

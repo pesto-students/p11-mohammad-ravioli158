@@ -71,3 +71,68 @@ If the current bar height is less than or equal to the bar at the top of the sta
 Update the maximum area if the calculated area is greater.
 After iterating through all the bars, if the stack is not empty, repeat the popping and area calculation process for the remaining bars.
 Return the maximum area.
+
+## Code
+[84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/submissions/994896306/)
+
+```
+    /**
+ * @param {number[]} heights
+ * @return {number}
+ */
+var largestRectangleArea = function(heights) {
+    let stack = []
+    //calculate previous Minimum
+    const prevMins = []
+    for(let i = 0; i < heights.length; i++){
+        const height = heights[i]
+        while(heights[stack[stack.length-1]] >= height){
+            stack.pop()
+        }
+        //keep track of heights
+        stack.push(i)
+
+        if(stack.length == 1)
+        {
+            prevMins.push(-1)
+        }else{
+            prevMins.push(stack[stack.length-2])
+        }
+
+    }
+    //calculate next Minimum
+    const nextMins = []
+    stack = []
+    for(let i = heights.length - 1; i >= 0; i--){
+        const height = heights[i]
+        while(heights[stack[stack.length-1]] >= height)
+        {
+            stack.pop()
+        }
+        //keep track of heights
+        stack.push(i)
+
+        if(stack.length == 1)
+        {
+            nextMins[i] = -1
+        }else{
+            nextMins[i] = stack[stack.length-2]
+        }
+    }
+
+    //for each element, use nextmin and prev min to calculate height
+    //keep track of max area
+    let maxArea = 0
+    for(let i = 0 ; i < heights.length; i++){
+        const prevMin = prevMins[i] == -1 ? -1 : prevMins[i]
+        const nextMin = nextMins[i] == -1 ? heights.length : nextMins[i]
+        const length = nextMin - prevMin - 1
+        
+        const area =  length * heights[i]
+        if(area > maxArea){
+            maxArea = area
+        }
+    }
+    return maxArea
+};
+```

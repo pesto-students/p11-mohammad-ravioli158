@@ -66,3 +66,45 @@ element of the stack.
 Push the current element onto the stack.
 Reverse the result array.
 Display the result array.
+
+[496. Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/submissions/988994216/)
+```
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function(nums1, nums2) {
+    const map = new Map()
+    //create map for nums2
+    const stack = []
+    for(let i = nums2.length-1; i >= 0; i--){
+        const num = nums2[i]
+        
+        while(num > stack[stack.length-1])
+        {
+            //remove top
+            stack.pop()
+        }
+
+        //else put on top
+        stack.push(num)
+
+        //next is the next gen
+        const nextGreat = ( stack.length === 1) ? -1 : stack[stack.length-2]
+        //console.log(num,':', nextGreat)
+        map.set(num, nextGreat)
+    }
+
+     //create result 
+        let result = []
+        for(let num of nums1)
+        {
+            result.push(map.get(num))
+        }
+       // console.log(result)
+        delete map
+        delete stack
+        return result
+};
+```

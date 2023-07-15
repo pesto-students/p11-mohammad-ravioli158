@@ -63,3 +63,36 @@ If the stack is not empty, pop the top element from the stack and check if it ma
 the closing parenthesis. If it doesn't, return false.
 After iterating through the string, if the stack is empty, return true. Otherwise, 
 return false.
+
+[LeetCode: 20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/submissions/994301498/)
+
+```
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+var isValid = function(s) {
+
+    const stack = []
+
+    for(let i = 0 ; i < s.length; i++){
+        let char = s.charCodeAt(i)
+        let top = stack[stack.length-1] ?? -1
+        let diff = char - top
+        if(stack.length > 0 && top !== -1 && diff >= 1 && diff <=2)
+        {
+            // if current character is matching parenthesis for top of  
+            // stack, pop that stack
+            stack.pop()
+            
+        }else{
+            // doesnt match so push to stack
+            stack.push(char)
+        }
+        
+    }
+    // return true if all parentheses matched , and therefor stack is empty
+    return stack.length == 0
+};
+```
