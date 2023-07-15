@@ -25,7 +25,8 @@ simplified path as a string.
 
 ## Test Case 1:
 sample Input
-/home/.././user//foo/../../bar
+/home/.././user//foo/../../bar        
+
 
 Sample Output
 /bar
@@ -63,3 +64,38 @@ If it is not empty, pop the top directory from the stack.
 Otherwise, push the directory onto the stack.
 After iterating through all the directories, construct the simplified path using the directories in the stack.
 Display the simplified path.
+
+## Code
+[71. Simplify Path](https://leetcode.com/problems/simplify-path/submissions/995003360/)
+
+```
+ /**
+ * @param {string} path
+ * @return {string}
+ */
+var simplifyPath = function(path) {
+    let paths = path.split('/')
+    const stack = []
+    for(let token of paths){
+        //remove the last directory
+        if(token == '..' )
+        {
+            stack.pop()
+        }
+        else if(token !== '' && token !== '.')
+        {
+            // if its not path operator add the directory name
+            stack.push(token)
+        }
+    }
+    let result = ''
+    for(let token of stack)
+    {
+        result += ('/'+token)
+    }
+    // if no path, add /
+    if(result == '')
+    result = '/'
+    return result
+};
+```
