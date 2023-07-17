@@ -74,3 +74,65 @@ Extract the height and the number of people in front for each person.
 Insert the person at the specified index based on the number of people in front into 
 the reconstructedQueue.
 Print the reconstructedQueue as pairs of heights and the number of people in front.
+
+##Code
+
+[https://leetcode.com/problems/queue-reconstruction-by-height/submissions/996298626/](https://leetcode.com/problems/queue-reconstruction-by-height/submissions/996298626/)
+```
+/**
+ * @param {number[][]} people
+ * @return {number[][]}
+ */
+var reconstructQueue = function(people) {
+  //Sort heights in ascending order
+  people.sort((a,b) => {
+      if(a[0] == b[0])
+      { 
+        return a[1] - b[1]
+      }else{
+        return a[0] - b [0]
+      }
+  })  
+  //console.log(people)
+  const result = new Array(people.length)
+  
+  for(let person of people){
+    //  console.log('preson',person)
+      const height = person[0]
+      const taller = person[1]
+      if(taller == 0)
+      {
+        //put at first available place
+        let i = 0 
+        while(result[i] !== undefined)
+        {
+          i++
+        }
+        //insert at ith place
+        result[i] = person
+
+      }else{
+        //try to insert such that it has 'taller' space before it
+        let count = 0
+        //count undefined and larger such that it is equals to larger  
+        let i = 0
+        for(i = 0 ; i < result.length && count < taller; i++){
+         // console.log('at i',i,'result[i]',result[i],'height',height)
+          if(result[i] === undefined || result[i][0] >= height)
+          {
+            count++
+          }
+        //  console.log('coutn is',count)
+        }
+        // place at empty place
+        while(result[i] !== undefined )
+        {
+          i++
+        }
+        result[i] = person
+      }
+    //  console.log(result)
+  }
+  return result
+};
+```
