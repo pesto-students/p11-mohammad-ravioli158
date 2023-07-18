@@ -66,3 +66,44 @@ If remainingPetrol becomes negative, reset start to the next petrol pump and res
 remainingPetrol to 0.
 If the total remaining petrol is greater than or equal to 0 at the end, the tour can be 
 completed, and the index start will be the answer.
+
+## Code 
+```
+function findStartingPoint(arr) {
+  let start = 0;  // Starting point index
+  let remainingPetrol = 0;  // Remaining petrol after completing the tour
+
+  let totalPetrol = 0;
+  let totalDistance = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    const petrol = arr[i][0];
+    const distance = arr[i][1];
+
+    totalPetrol += petrol;
+    totalDistance += distance;
+
+    remainingPetrol += petrol - distance;
+
+    // If remaining petrol becomes negative, reset the starting point
+    if (remainingPetrol < 0) {
+      start = i + 1;
+      remainingPetrol = 0;
+    }
+  }
+
+  // Check if the total petrol is enough to cover the entire tour
+  if (totalPetrol >= totalDistance) {
+    return start;
+  }
+
+  return -1;  // If total petrol is less than total distance, no feasible tour
+}
+
+// Test case
+//const arr = [[4, 6], [6, 5], [7, 3], [4, 5]];
+console.log(findStartingPoint(arr)); // Output: 1
+const arr = [[5, 4], [3, 3], [6, 7]];
+console.log(findStartingPoint(arr)); // Output: 0
+
+```

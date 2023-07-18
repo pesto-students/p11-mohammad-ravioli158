@@ -73,3 +73,41 @@ Dequeue the first K elements from the queue and push them onto the stack.
 Pop elements from the stack and enqueue them back into the queue.
 Enqueue the remaining elements from the original queue back into the modified queue.
 Print the modified queue.
+
+## Code 
+
+```
+function reverseFirstK(arr, n, k)
+{
+    //Auxiliary stack to store k numbers 
+    const auxStack = []
+    //Auxiliary queu to store n-k numbers
+    const auxQueue = []
+
+    //move k items to aux stack
+    for (let i = 0; i < k; i++)
+    {
+        auxStack.push(arr.shift())
+    }
+
+    //move n - k items to aux queue
+    while (arr.length > 0)
+    {
+        auxQueue.push(arr.shift())
+    }
+   
+    // move stack items to queue and auxqueue to main queue
+
+    while (auxStack.length > 0)
+    {
+        arr.push(auxStack.pop())
+    }
+
+    while (auxQueue.length > 0) {
+        arr.push(auxQueue.shift())
+    }
+
+    return arr
+
+}
+```

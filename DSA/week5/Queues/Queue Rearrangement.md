@@ -53,3 +53,26 @@ Iterate through the initial queue and enqueue each element into either the
 evenQueue or oddQueue based on its parity.
 Concatenate the evenQueue with the oddQueue to get the rearranged queue.
 Return the rearranged queue.
+
+## Code 
+```
+function segregateEvenOdd(arr,n){
+        const evenQueue = []
+	    const oddQueue = []
+	    //traverse array and move odd and even numbers to separate queues,
+	    // so they keep thier relative order
+	    for(let num of arr){
+	        if(num % 2 == 0){
+	            evenQueue.push(num)
+	        }else{
+	            oddQueue.push(num)
+	        }
+	    }
+	    
+	    
+	    return evenQueue.concat(oddQueue)
+    }
+    
+    let arr = [12, 34, 45,9,8,90]
+    console.log(segregateEvenOdd(arr))
+```
