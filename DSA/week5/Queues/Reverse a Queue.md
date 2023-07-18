@@ -1,4 +1,4 @@
-## Problem Name:
+n## Problem Name:
 Reverse a Queue
 
 ## Problem Statement:
@@ -62,3 +62,20 @@ Enqueue all elements of the input array into the queue.
 While the queue is not empty, dequeue an element and push it onto the stack.
 While the stack is not empty, pop an element and enqueue it back into the queue.
 Print the reversed queue.
+
+## COde
+```
+function reverse(q) {
+  const s = new Stack(); // Auxiliary Stack
+    // Move elements to auxiliar stack
+  while (!q.isEmpty()) {
+    s.push(q.dequeue());
+  }
+  // and now add them to queue, so the last element of queue is on top of stack
+  while (!s.isEmpty()) {
+    q.enqueue(s.pop());
+  }
+
+  return q;
+}
+```
