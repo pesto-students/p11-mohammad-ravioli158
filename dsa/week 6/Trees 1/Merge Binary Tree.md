@@ -67,3 +67,32 @@ Recursively merge the left and right subtrees. is no need to perform any swappin
 - Create the binary trees using the input.
 - Merge the binary trees by calling the mergeBinaryTrees function.
 - Print the merged binary tree in pre-order traversal.
+
+## Code
+[Leetcode 617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/submissions/1001926980/)
+```
+/**
+ * Merge two binary trees.
+ * @param {TreeNode} root1 - The root of the first binary tree.
+ * @param {TreeNode} root2 - The root of the second binary tree.
+ * @return {TreeNode} - The merged binary tree.
+ */
+var mergeTrees = function(root1, root2) {
+    // If both trees are empty, there is nothing to merge, return null.
+    if (!root1 && !root2) {
+        return null;
+    }
+
+    // Calculate the value for the new node as the sum of values from both trees.
+    const node = new TreeNode((root1?.val ?? 0) + (root2?.val ?? 0));
+
+    // Recursively merge the left subtrees of both trees and attach it to the new node.
+    node.left = mergeTrees(root1?.left, root2?.left);
+
+    // Recursively merge the right subtrees of both trees and attach it to the new node.
+    node.right = mergeTrees(root1?.right, root2?.right);
+
+    // Return the merged tree rooted at the new node.
+    return node;
+};
+```
