@@ -68,3 +68,45 @@ Keep track of the minimum and maximum values that a node can have in each recurs
 - If we reach a leaf node (node is null), we return true.
 - We recursively check the left and right subtrees of each node, passing the updated minimum and maximum values.
 - If all nodes satisfy the BST property, we return true.
+
+
+## Code
+[98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/submissions/1001632157/)
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+ // Use inorder traversal to keep track of increasing order of nodes,if it doenst follow
+ //increasing order it means it is not BST
+let inorder = []
+function validateBST(node){
+    //leaf node will always be valid
+    if(!node)
+    {
+        return true
+    }
+    let left =  validateBST(node.left)
+    //if order isnt increasing return false
+    if(inorder[inorder.length-1] >= node.val)
+    {
+        return false
+    }
+    inorder.push(node.val)
+    let right =  validateBST(node.right)
+    //both left and right subtree should be valid, 
+    return left & right
+}
+var isValidBST = function(root) {
+    inorder = []
+    return (validateBST(root))
+};
+```

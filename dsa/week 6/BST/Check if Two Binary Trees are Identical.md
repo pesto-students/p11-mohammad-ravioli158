@@ -45,3 +45,35 @@ Recursive case: If the values of the current nodes are equal, recursively check 
 - Recursively check if the left subtrees of both trees are identical.
 - Recursively check if the right subtrees of both trees are identical.
 - If all the above conditions are satisfied, return true.
+
+## Code
+[100. Same Tree](https://leetcode.com/problems/same-tree/submissions/1001630252/)
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+ 
+
+var isSameTree = function(p, q) {
+    /*
+        Recursively check if leftsubtree and rightsubtre are equal and root nodes are equal,
+        if one of them is null meaning, the tree didnt end together at corresponding leaf node,
+        therefore not similar
+    */
+    if(p == null && q == null)
+    return true
+    else if (p == null || q == null)
+    return false
+    return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+};
+```

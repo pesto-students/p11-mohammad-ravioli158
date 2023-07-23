@@ -57,3 +57,59 @@ Use a temporary pointer to keep track of the previous node while traversing the 
 - Recursively call the convertBSTtoLinkedList function for the right subtree of the current node.
 - Call the convertBSTtoLinkedList function initially with the root of the BST.
 Return the head of the linked list.
+
+## Code
+[114. Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/submissions/1000254929/)
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+ function convert(node)
+ {
+     // if last node
+     if(node.left == null && node.right == null)
+    {
+        return {'start':node, 'end':node}
+    }
+     let leftTree = null, rightTree = null
+     //process node
+     //left
+     if(node.left)
+     leftTree = convert(node.left)
+
+     //right
+     if(node.right)
+     rightTree = convert(node.right)
+     
+    //set left to null 
+     node.left = null
+
+     //set right to leftsubtree start
+     //set leftTree end to start of right
+     if(leftTree)
+     {
+         node.right = leftTree.start
+         leftTree.end.left = null
+         leftTree.end.right = (rightTree == null )?  null : rightTree.start 
+     }
+     return {'start': node, 'end':(rightTree == null) ? leftTree.end : rightTree.end }
+
+ }
+var flatten = function(root) {
+    if(root == null)
+    return null
+   let result =  convert(root)
+  // console.log('result',result)
+   return result
+
+};
+```

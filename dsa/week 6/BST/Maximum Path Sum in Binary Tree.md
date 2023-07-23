@@ -44,3 +44,56 @@ At each node, compute the maximum path sum through that node (including the node
 - Return the maximum path sum through the current node.
 - Call the findMaxPathSum function on the root node and store the result in maxSum.
 - Return the maxSum as the final result.
+
+## Code
+[124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/submissions/997412599/)
+```
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+function pathSum(node)
+{
+    //If last node, node value is the max and current
+    if(node.left == null && node.right == null)
+    return [node.val, node.val]
+    let left = [Number.NEGATIVE_INFINITY,Number.NEGATIVE_INFINITY],right = [Number.NEGATIVE_INFINITY,Number.NEGATIVE_INFINITY];
+    //go left
+    if(node.left)
+    left = pathSum(node.left)
+    //go right
+    if(node.right)
+    right = pathSum(node.right)
+
+
+    //process weight
+    let maxSum = Math.max(left[1],right[1])
+    //if it is center
+    let widthSum = left[0] + right[0] + node.val
+    if(widthSum > maxSum)
+    maxSum = widthSum
+
+    let maxSubtree = Math.max(left[0],right[0])
+    let currentSum = (maxSubtree > 0 ) ? node.val + maxSubtree : node.val
+    if(currentSum > maxSum)
+    maxSum = currentSum
+   // propoagate currentsum and max sum up the recursion stack, and update maxsum if currentsum is larger than max
+
+    return [currentSum, maxSum]
+    
+
+}
+var maxPathSum = function(root) {
+    //second value of array, always propogates the max weight of subtree to the root
+    return pathSum(root)[1]
+};
+```
