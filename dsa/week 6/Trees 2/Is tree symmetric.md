@@ -40,3 +40,44 @@ Use a recursive approach to check if the subtrees are symmetric.
 - Check if the values of the two nodes are equal. If not, return false.
 - Recursively check if the left subtree of one node is symmetric to the right subtree of the other node, and vice versa.
 -   Return true if both conditions are satisfied.
+
+
+## Code
+[Leetcode 101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/submissions/993233412/)
+
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+function isSymmtericHelper(root1, root2)
+{
+    //base case both null
+    if(root1 == null && root2 == null){
+        return true
+    }
+    //if one of the node is null, they cant be symmetric
+    if(root1 == null || root2 == null){
+        return false
+    }
+    //Recursilvelry check if roots are same and left of root1 and right of root1 are symmetric, likewise for right of 1st and //left of 2nd
+    if(root1.val == root2.val && isSymmtericHelper(root1.left,root2.right) && isSymmtericHelper(root1.right, root2.left)){
+        return true
+    }
+    return false
+}
+
+var isSymmetric = function(root) {
+
+    return isSymmtericHelper(root,root)   
+
+};
+```

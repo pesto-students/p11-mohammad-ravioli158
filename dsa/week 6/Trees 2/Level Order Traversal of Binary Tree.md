@@ -85,3 +85,78 @@ Repeat this process until the queue is empty.
 - Add the current level to the result array.
 - Repeat steps 3-4 until the queue is empty.
 - Return the result array containing the level order traversal.
+
+## Code
+[102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/993366469/)
+
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val);
+ *     this.left = (left===undefined ? null : left);
+ *     this.right = (right===undefined ? null : right);
+ * }
+ */
+
+/**
+ * Print level order traversal of a binary tree.
+ * @param {TreeNode[]} nodes - An array of nodes to process at a specific level.
+ * @param {number[][]} result - The result array to store level order traversal.
+ */
+function printLevelOrder(nodes, result) {
+    // If there are no nodes to process, stop the recursion.
+    if (nodes.length === 0) {
+        return;
+    }
+    
+    // Create an array to store the values of nodes at the current level.
+    const current = [];
+    // Create a new array to store nodes of the next level.
+    const newNodes = [];
+    
+    // Process each node at the current level.
+    for (let node of nodes) {
+        // Add the value of the current node to the current level's array.
+        current.push(node.val);
+        
+        // If the current node has a left child, add it to the newNodes array for the next level.
+        if (node.left) {
+            newNodes.push(node.left);
+        }
+        
+        // If the current node has a right child, add it to the newNodes array for the next level.
+        if (node.right) {
+            newNodes.push(node.right);
+        }
+    }
+    
+    // Add the array of values at the current level to the result array.
+    result.push(current);
+    
+    // Recursively call printLevelOrder with the nodes of the next level.
+    printLevelOrder(newNodes, result);
+}
+
+/**
+ * Get the level order traversal of a binary tree.
+ * @param {TreeNode} root - The root of the binary tree.
+ * @return {number[][]} - An array containing the level order traversal of the binary tree.
+ */
+var levelOrder = function(root) {
+    // If the root is null, return an empty array.
+    if (!root) {
+        return [];
+    }
+    
+    // Create an empty array to store the level order traversal result.
+    const result = [];
+    
+    // Start the level order traversal from the root node, passing it in an array.
+    printLevelOrder([root], result);
+    
+    // Return the level order traversal result.
+    return result;
+};
+
+```

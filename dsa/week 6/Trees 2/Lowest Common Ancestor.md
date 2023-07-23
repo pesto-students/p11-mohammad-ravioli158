@@ -65,3 +65,43 @@ If both subtrees return null, the lowest common ancestor is not found in the cur
 - Create the binary tree using the input values.
 - Call the lowestCommonAncestor function with the root node and the two nodes to find the lowest common ancestor.- 
 - Print the value of the lowest common ancestor.
+
+
+
+## Code
+[Leetcode 236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/submissions/998995317/)
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+
+var lowestCommonAncestor = function(root, p, q) {
+    // If the root is null or either p or q is the root, then the LCA is the root itself.
+    if (!root || root === p || root === q) {
+        return root;
+    }
+
+    // Recursively search for the LCA in the left subtree.
+    let left = lowestCommonAncestor(root.left, p, q);
+    // Recursively search for the LCA in the right subtree.
+    let right = lowestCommonAncestor(root.right, p, q);
+
+    // If one of the subtrees returned null, it means neither p nor q was found in that subtree.
+    // In that case, the LCA must be in the other subtree that returned a non-null result.
+    if (!left) {
+        return right;
+    } else if (!right) {
+        return left;
+    } else {
+        // If both subtrees returned a non-null result, it means p and q were found in different subtrees,
+        // and the current root is their lowest common ancestor.
+        return root;
+    }
+};
+
+```
