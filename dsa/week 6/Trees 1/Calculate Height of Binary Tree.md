@@ -39,3 +39,42 @@ The height of the overall tree is the maximum height among the left and right su
 - If the root is null, return 0 (height of an empty tree).
 - Otherwise, recursively calculate the height of the left and right subtrees.
 - Return the maximum height among the left and right subtrees, plus 1 (to account for the root node).
+
+## Code
+[LeetCode](https://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/1001638402/)
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+ function calHeight(node)
+ {
+    // if no node, height is 0
+     if(!node)
+     return 0
+     // for leaf nodes, left and right subtree height is 0
+     let lHeight = 0, rHeight = 0;
+     if(node.left)
+     {
+        lHeight = calHeight(node.left)
+     }
+     if(node.right)
+     {
+         rHeight = calHeight(node.right)
+     }
+     //height at current node is max of left, or right subtree plus current(1)
+    return  Math.max(lHeight,rHeight) + 1
+ }
+var maxDepth = function(root) {
+    return (calHeight(root))
+
+};
+```

@@ -44,3 +44,55 @@ Continue the traversal until all nodes have been visited.
 - If the node is a leaf node, increment the count.
 - Continue the traversal until all nodes have been visited.
 - Return the count as the number of leaf nodes in the binary tree.
+## Code
+[222. Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/submissions/999600454/)
+
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+ function findLeftHeight(node)
+ {
+     if(!node)
+     return 0
+     let left = findLeftHeight(node.left)
+     return left + 1
+ }
+ function findRightHeight(node)
+ {
+     if(!node)
+     return 0
+     let right = findRightHeight(node.right)
+     return right + 1
+ }
+ 
+ function findTotalCount(node) {
+     if(!node)
+     return 0
+     let leftHeight = findLeftHeight(node)
+     let rightHeight = findRightHeight(node)
+     //We calculate height of leftsubtree and rightsubtree, if both equal use 2^h -1
+     if(leftHeight == rightHeight)
+     {
+         //use formula 2^h - 1
+         return Math.pow(2,leftHeight) - 1
+     }else
+     {
+         //else add 1 to count , and find coutn of left and rightsubtree
+         return 1 + findTotalCount(node.left) + findTotalCount(node.right)
+     }
+ }
+var countNodes = function(root) {
+  let count = findTotalCount(root)
+  return count
+};
+```
