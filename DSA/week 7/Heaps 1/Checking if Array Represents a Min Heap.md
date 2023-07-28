@@ -39,3 +39,21 @@ If the loop completes without finding any violation, return true.
 - Start from the first non-leaf node (index Math.floor(arr.length / 2) - 1) and iterate towards the root.
 - Compare each node with its children (arr[2 * i + 1] and arr[2 * i + 2]) and return false if the heap property is violated.
 - If the loop completes without finding any violation, return true to indicate that the array represents a min heap.
+
+## Code
+```
+ isMinHeap(n,arr){
+        for(let i = 0; i < arr.length;i++){
+            const root = arr[i]
+
+            // Get left and right in array
+            const leftChild = arr[(2*i+1)]
+            const rightChild = arr[(2*i+2)]
+
+            // Check for Min Heap condition, if root is not lowest among left and right child it is not min heap
+            if(leftChild < root || rightChild < root)
+            return false
+        }
+        return true
+    }
+```

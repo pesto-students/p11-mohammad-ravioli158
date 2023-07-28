@@ -33,3 +33,17 @@ sample output:
 
 ## Approach:
 - To find the minimum element in a min heap, we simply return the value at the root of the heap (i.e., the first element of the array representation of the heap).
+
+## Code
+
+```
+ function getMin(heap, n)
+    {
+        //The top/root element is minimum in minheap
+        if heap.length > 0
+        return heap[0]
+        else
+        return null
+    }
+
+```
