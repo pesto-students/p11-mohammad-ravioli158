@@ -47,3 +47,49 @@ Consider handling edge cases where either tree is empty or if the second tree is
 - Implement a function to check if the second tree is a subtree of the first tree.
 - Use a recursive approach to check if the left and right subtrees of the first tree match the second tree.
 - Return true if a subtree is found; otherwise, return false.
+
+## Code
+[Leetcode: 572. Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/submissions/1006078913/)
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} subRoot
+ * @return {boolean}
+ */
+
+function isSameTree(p,q)
+{
+    if(!p && !q)
+    return true
+    
+    if(!p || !q)
+    return false
+
+    return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+}
+var isSubtree = function(root, subRoot) {
+    if(!root)
+    return false
+
+    let current = false
+    // if left subtree, or current or right recursively satisfied
+    // return true
+    if(root.val == subRoot.val)
+    {
+        current =  isSameTree(root, subRoot)
+    }
+
+    let left = isSubtree(root.left, subRoot)
+    let right = isSubtree(root.right, subRoot)
+
+    return left || right || current
+};
+```

@@ -49,3 +49,38 @@ If none of the paths result in a sum of zero at a leaf node, return false.
 - Recursively check if there is a path with the remaining sum in the left and right subtrees.
 - If either of the recursive calls returns true, it means a path with the target sum exists. Return true.
 - If none of the paths result in a sum of zero at a leaf node, return false.
+
+## Code
+[Leetcode: 112. Path Sum](https://leetcode.com/problems/path-sum/submissions/1006047294/)
+
+```
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {boolean}
+ */
+
+var hasPathSum = function(root, targetSum) {
+    const getPathSum = (node,pathSum) => {
+        if(!node)
+        return false
+
+        pathSum += node.val
+        // If you reach at end of the path and sum matches the target
+        if(pathSum == targetSum && node.left == null && node.right == null)
+        return true
+        // If even one path matched the target sum , return true
+        return getPathSum(node.left, pathSum) || getPathSum(node.right, pathSum)
+    }    
+
+    return getPathSum(root,0)
+};
+```
