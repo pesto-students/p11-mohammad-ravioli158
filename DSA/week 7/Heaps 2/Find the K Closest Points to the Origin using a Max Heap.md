@@ -62,3 +62,40 @@ If the max heap is full, remove the point with the maximum distance.
 - Extract the k closest points from the max heap.
 - Return the closest points.
 - Print the k closest points.
+
+## Code
+[Leetcode: 973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/submissions/1006661333/)
+
+```
+var kClosest = function(points, k) {
+    let heap = new MaxHeap()
+    const result = []
+    //create max heap of k points
+    for(let point of points){
+        // For each point, move them to heap if heap has less than k elements
+    
+        const distance = Math.sqrt( (point[0] * point[0]) + (point[1] * point[1]))    
+        if(heap.size() < k){
+            //Fill k elements in heap
+            heap.push({
+                'point': point,
+                'val':distance
+            })
+        // If the new point is closer than max of the heap, swap it by popping the max value
+        }else if(heap.peek().val > distance)
+        {
+            heap.pop()
+            heap.push({
+                'point': point,
+                'val': distance
+            })
+        }
+    }
+    // move closest k elements to the result
+    while(heap.size() > 0)
+    result.push(heap.pop().point)
+
+    return result
+
+};
+```
