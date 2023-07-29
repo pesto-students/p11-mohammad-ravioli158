@@ -44,3 +44,142 @@ The kth largest element will be the root of the min heap.
 - After iterating over all the elements, the kth largest element will be the root of the min heap.
 - Return the kth largest element.
 - Print the kth largest element.
+
+
+## Code
+[Leetcode: 215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/1006551801/)
+
+```
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+
+var findKthLargest = function(nums, k) {
+    const heap = new MaxHeap()
+    // Insert k elements to the heap
+    let index
+
+    for( index = 0; index < k; index++){
+        heap.push(nums[index])
+    }
+    // Now we maintain top k elements while only pushing if num is larger than smallest of the k group
+    while(index < nums.length){
+        const num = nums[index]
+        if(num > heap.peek()){
+            heap.pop()
+            heap.push(num)
+        }
+        index++
+    }
+    return heap.peek()
+
+};
+
+/**
+* Heap Implementation
+**/
+class MaxHeap{
+    constructor(){
+        this.arr = []
+    }
+     size()
+    {
+        return this.arr.length
+    }
+    peek(){
+        if(this.arr.length == 0)
+        return null
+        else
+        return this.arr[0]
+    }
+    // Pop: Get the minimum element
+    pop(){
+        if(this.arr.length == 0)
+        return null
+        
+        //swap the root with the last element
+        let lastIndex = this.arr.length -1 
+        const temp = this.arr[lastIndex]
+        const popVal = this.arr[0]
+        this.arr[0] = temp
+       // console.log('Before reaassign', this.arr)
+        this.arr.pop()
+        this.heapifyDown()
+        return popVal
+    }
+    
+    // Push: Insert the new element
+    push(val){
+        this.arr.push(val)
+        this.heapifyUp()
+    }
+    
+    // Heapify from bottom to top, for removal
+    heapifyUp(){
+        let lastIndex = this.arr.length - 1
+        let parentIndex = this.getParentIndex(lastIndex)
+        while(lastIndex > 0 && this.arr[parentIndex] > this.arr[lastIndex]){
+            //swap them
+            const temp = this.arr[parentIndex]
+            this.arr[parentIndex] = this.arr[lastIndex]
+            this.arr[lastIndex] = temp
+            lastIndex = parentIndex
+            parentIndex = this.getParentIndex(lastIndex)
+        }
+    }
+    
+    // Heapify from top to bottom, for inserting
+    heapifyDown(){
+        let current = 0
+        
+        //move from top to bottom until they are smaller
+        let minIndex = current;
+        let leftIndex = this.getLeftChildIndex(current)
+        let rightIndex = this.getRightChildIndex(current)
+        
+        if( this.arr[leftIndex] < this.arr[current])
+        minIndex = leftIndex
+        
+        if(this.arr[rightIndex] < this.arr[minIndex])
+        minIndex = rightIndex
+        
+        while(this.arr[current] > this.arr[minIndex]){
+            // Swap
+            // console.log('currnet',this.arr[current])
+           
+            const temp = this.arr[current]
+            this.arr[current] = this.arr[minIndex]
+            this.arr[minIndex] = temp
+            
+            
+            // Update minindex
+            current = minIndex
+            leftIndex = this.getLeftChildIndex(current)
+            rightIndex = this.getRightChildIndex(current)
+        
+            if( this.arr[leftIndex] < this.arr[current])
+            minIndex = leftIndex
+        
+            if(this.arr[rightIndex] < this.arr[minIndex])
+            minIndex = rightIndex
+        }
+        
+    }
+    isValidIndex(index){
+        return  index < this.arr.length
+    }
+    getParentIndex(index){
+        return Math.floor((index - 1)/2)
+    }
+    
+    getLeftChildIndex(index){
+        return 2 * index + 1
+    }
+    
+    getRightChildIndex(index){
+        return 2 * index + 2
+    }
+}
+```
