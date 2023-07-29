@@ -49,3 +49,36 @@ Repeat the above steps until the heap is empty.
 - Perform the merging process by extracting the smallest element from the heap, adding it to the result array, and replacing it with the next element from the same array (if available).
 - Restore the heap property by performing heapify.
 - Return the merged sorted array as the result.
+
+## Code
+[Leetcode: 23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/submissions/1006576442/)
+```
+
+var mergeKLists = function(lists) {
+    let minHeap = new MinHeap()
+    //Insert elements of lists in the minHeap
+    for(let list of lists)
+    {
+        let current = list
+        while(current !== null){
+            minHeap.push(current.val)
+            current = current.next
+        }
+    }
+    let head = null, tail = null;
+    // Now take minimum elements from heap and form sorted list
+    while(minHeap.size() > 0)
+    {
+        const newNode = new ListNode(minHeap.pop())
+        if(!head)
+        {
+            head = newNode
+            tail = newNode
+        }else{
+            tail.next = newNode
+            tail = newNode
+        }
+    }
+    return head
+};
+```

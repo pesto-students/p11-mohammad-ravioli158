@@ -54,3 +54,121 @@ The kth smallest element will be the result.
 - Extract the kth smallest element from the heap by repeatedly extracting the smallest element and replacing it with the next - - - element in the same row (if available) or removing it from the heap.
 - Return the kth smallest element as the result.
 - Print the kth smallest element.
+## Code
+```
+function kthSmallest(arr,l,r,k){
+      const maxHeap = new MaxHeap()
+      //Add first k elements to max heap,
+      let index = 0
+      for(; index < k; index++)
+      maxHeap.push(arr[index])
+      
+      // Maintain group of smallset k elements by only pushing if the new value is smaller than highest in the group
+      
+      while(index < arr.length)
+      {
+          if(arr[index] < maxHeap.peek())
+          {
+              maxHeap.pop()
+              maxHeap.push(arr[index])
+          }
+          index++
+      }
+      return  maxHeap.peek()
+}
+
+
+/** Heap Implementation **/
+class MaxHeap{
+    constructor(){
+        this.arr = []
+    }
+    
+    push(val){
+        this.arr.push(val)
+        this.heapifyUp()
+    }
+    
+    pop(){
+        
+        if(this.size() == 0)
+        return null
+        
+        //Swap root with last element and then pop the last element
+        
+        const temp = this.arr[this.arr.length - 1]
+        this.arr[this.arr.length - 1] = this.arr[0]
+        this.arr[0] =  temp
+        // Starting at the root node, heapify down while maintaining the max heap property
+        const popVal = this.arr.pop()
+        this.heapifyDown()
+        return popVal
+        
+    }
+    peek(){
+        return this.arr[0]
+    }
+    // Starting from last index, heapify up while maintaining max heap property
+    heapifyUp(){
+        let currentIndex = this.arr.length - 1
+        let parentIndex = this.parentIndex(currentIndex)
+        while(this.arr[parentIndex] < this.arr[currentIndex]){
+            // If parent is smaller, swap the values
+            const temp = this.arr[parentIndex]
+            this.arr[parentIndex] = this.arr[currentIndex]
+            this.arr[currentIndex] = temp
+            currentIndex = parentIndex
+            parentIndex = this.parentIndex(currentIndex)
+            
+        }
+    }
+    
+    heapifyDown(){
+        // Start at the root node and compare with child nodes, swap with the max
+        let currentIndex = 0
+        let maxIndex = 0
+        let leftIndex = this.leftChildIndex(currentIndex)
+        let rightIndex = this.rightChildIndex(currentIndex)
+        
+        if(this.arr[leftIndex] > this.arr[currentIndex])
+        maxIndex = leftIndex
+        
+        if(this.arr[rightIndex] > this.arr[maxIndex])
+        maxIndex = rightIndex
+        
+        while(this.arr[maxIndex] > this.arr[currentIndex]){
+            //swap them
+            const temp = this.arr[maxIndex]
+            this.arr[maxIndex] = this.arr[currentIndex]
+            this.arr[currentIndex] = temp
+            
+            currentIndex = maxIndex
+            leftIndex = this.leftChildIndex(currentIndex)
+            rightIndex = this.rightChildIndex(currentIndex)
+        
+            if(this.arr[leftIndex] > this.arr[currentIndex])
+            maxIndex = leftIndex
+        
+            if(this.arr[rightIndex] > this.arr[maxIndex])
+            maxIndex = rightIndex
+        }
+
+    }
+    
+    size(){
+        return this.arr.length
+    }
+    
+    parentIndex(index){
+        return Math.floor((index-1)/2)
+    }
+    
+    leftChildIndex(index){
+        return 2 * index + 1
+    }
+    
+    rightChildIndex(index){
+        return 2 * index + 2
+    }
+}
+```

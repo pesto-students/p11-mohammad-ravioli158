@@ -80,7 +80,7 @@ var findKthLargest = function(nums, k) {
 /**
 * Heap Implementation
 **/
-class MaxHeap{
+class MinHeap{
     constructor(){
         this.arr = []
     }
@@ -104,7 +104,6 @@ class MaxHeap{
         const temp = this.arr[lastIndex]
         const popVal = this.arr[0]
         this.arr[0] = temp
-       // console.log('Before reaassign', this.arr)
         this.arr.pop()
         this.heapifyDown()
         return popVal
@@ -147,7 +146,6 @@ class MaxHeap{
         
         while(this.arr[current] > this.arr[minIndex]){
             // Swap
-            // console.log('currnet',this.arr[current])
            
             const temp = this.arr[current]
             this.arr[current] = this.arr[minIndex]
