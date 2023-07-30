@@ -64,3 +64,164 @@ Calculate the range whenever all lists have been covered, and update the minimum
 - j. Check if any list is exhausted.
 - Return the result, which represents the smallest range.
 - Print the smallest range.
+
+## Code
+[Leetcode: 632. Smallest Range Covering Elements from K Lists](https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/submissions/1007676138/)
+```
+/**
+ * @param {number[][]} nums
+ * @return {number[]}
+ */
+
+
+var smallestRange = function(nums) {
+    // Min heap to store a range from all lists at a time,
+    // it gives us max and min
+
+    const heap = new MinHeap()
+    let max = null;
+    for(let list of nums)
+    {
+        if(list[0] > max || !max)
+        max = list[0]
+
+        heap.push({'list': list, 'val': list[0], 'index':0})
+    }
+    // Current range that includes all the elements of the lists
+    let minRange = [heap.peek().val, max]
+    let min ;
+    //console.log('start min',minRange)
+    while(true){
+        // If range can be further reduced by increasing min of current minlist
+        min = heap.peek()
+       // console.log(heap)
+        if(min.index < min.list.length-1)
+        {
+            //We can further reduce the range by removing min and moving to next in current list
+            heap.pop()
+            let nextVal = min.list[min.index+1]
+            // Keep track of max in the heap, that will be max of our range
+            if(nextVal > max)
+            max = nextVal
+            heap.push({
+                'list':min.list,
+                'val':nextVal,
+                'index':min.index+1
+            })
+            // if current range is smaller than min rnge , update it
+            if((max - heap.peek().val) < (minRange[1] - minRange[0])){
+                minRange = [heap.peek().val,max]
+            }
+        }else{
+            break;
+        }
+        
+    }    
+    //console.log('min is',min.val, 'max',max)
+    if((max - min.val) < (minRange[1] - minRange[0])){
+                minRange = [min.val,max]
+     }
+    return minRange
+};
+
+class MinHeap{
+    constructor(){
+        this.arr = []
+    }
+     size()
+    {
+        return this.arr.length
+    }
+    peek(){
+        if(this.arr.length == 0)
+        return null
+        else
+        return this.arr[0]
+    }
+    // Pop: Get the minimum element
+    pop(){
+        if(this.arr.length == 0)
+        return null
+        
+        //swap the root with the last element
+        let lastIndex = this.arr.length -1 
+        const temp = this.arr[lastIndex]
+        const popVal = this.arr[0]
+        this.arr[0] = temp
+        this.arr.pop()
+        this.heapifyDown()
+        return popVal
+    }
+    
+    // Push: Insert the new element
+    push(val){
+        this.arr.push(val)
+        this.heapifyUp()
+    }
+    
+    // Heapify from bottom to top, for removal
+    heapifyUp(){
+        let lastIndex = this.arr.length - 1
+        let parentIndex = this.getParentIndex(lastIndex)
+        while(lastIndex > 0 && this.arr[parentIndex]?.val >= this.arr[lastIndex]?.val){
+            //swap them
+            const temp = this.arr[parentIndex]
+            this.arr[parentIndex] = this.arr[lastIndex]
+            this.arr[lastIndex] = temp
+            lastIndex = parentIndex
+            parentIndex = this.getParentIndex(lastIndex)
+        }
+    }
+    
+    // Heapify from top to bottom, for inserting
+    heapifyDown(){
+        let current = 0
+        
+        //move from top to bottom until they are smaller
+        let minIndex = current;
+        let leftIndex = this.getLeftChildIndex(current)
+        let rightIndex = this.getRightChildIndex(current)
+        
+        if( this.arr[leftIndex]?.val < this.arr[current]?.val)
+        minIndex = leftIndex
+        
+        if(this.arr[rightIndex]?.val < this.arr[minIndex]?.val)
+        minIndex = rightIndex
+        
+        while(this.arr[current]?.val > this.arr[minIndex]?.val){
+            // Swap
+           
+            const temp = this.arr[current]
+            this.arr[current] = this.arr[minIndex]
+            this.arr[minIndex] = temp
+            
+            
+            // Update minindex
+            current = minIndex
+            leftIndex = this.getLeftChildIndex(current)
+            rightIndex = this.getRightChildIndex(current)
+        
+            if( this.arr[leftIndex]?.val < this.arr[current]?.val)
+            minIndex = leftIndex
+        
+            if(this.arr[rightIndex]?.val < this.arr[minIndex]?.val)
+            minIndex = rightIndex
+        }
+        
+    }
+    isValidIndex(index){
+        return  index < this.arr.length
+    }
+    getParentIndex(index){
+        return Math.floor((index - 1)/2)
+    }
+    
+    getLeftChildIndex(index){
+        return 2 * index + 1
+    }
+    
+    getRightChildIndex(index){
+        return 2 * index + 2
+    }
+}
+```
