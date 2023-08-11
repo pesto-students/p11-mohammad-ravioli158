@@ -55,3 +55,60 @@ Return dp[s.length].
 - After the iterations, dp[s.length] will contain the result for the entire string.
 - Return dp[s.length].
 - Print the result.
+## Code
+[Leetcode: 139. Word Break](https://leetcode.com/problems/word-break/submissions/1018148765/)
+```
+/**
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
+ */
+ let cache;
+
+ // Recursive Approach
+function helper(s,dict){
+    if(cache[s] !== undefined)
+    return cache[s]
+    if(s == '')
+    return true
+    let word = ''
+    let result = false
+    for(let l = 0; l < s.length; l++){
+
+        word += s[l]
+        if(dict.includes(word)){
+            result = result || helper(s.slice(l+1),dict)
+        }
+
+    }
+    cache[s] = result
+    return result
+}
+var wordBreak = function(s, wordDict) {
+    // cache = {}
+    // return helper(s,wordDict)
+
+    // Dynamic Programming Approach
+    // dp[i] signifies if until index i , string can be broken to form words given in word dictionary
+    const dp = new Array(s.length)
+    // for each length of string, we check if until given index string can be broken in words
+    for(let i  = 0; i < dp.length; i++){
+        let result = false;
+        if(wordDict.includes(s.slice(0,i+1))){
+            //If String from 0 to i is in the dictionary
+            result = true
+
+        }else{
+            // Check all the pair of string that can be formed, return true even if one pair works
+            for(let j = 0; j < i && result !== true; j++){
+
+                result = result || (dp[j] && wordDict.includes(s.slice(j+1,i+1))) 
+        }
+        }
+
+        dp[i] = result
+    }
+    // Last index is for the complete length of the string and stores result
+    return dp[s.length-1]
+};
+```

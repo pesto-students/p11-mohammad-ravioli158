@@ -69,3 +69,51 @@ Return dp[eggs][floors], which contains the minimum number of attempts.
 - Take the minimum of these maximum attempts and assign it to dp[i][j].
 - Return dp[eggs][floors], which contains the minimum number of attempts.
 - Print the minimum number of attempts.
+
+## Code
+
+```
+function eggDrop(n, k)
+    { 
+        // Dynamic Programming Approach
+        // dp[i][j]: returns minimum number of attempts for i eggs for j floors
+        
+        const dp = Array.from({length: n+1}, () => {return new Array(k+1)})
+        
+        
+        // Base cases
+        
+        // For 0 floor or 1 floor we can only try 0 or 1 time respectively
+        
+        for(let egg = 0; egg < dp.length; egg++){
+            dp[egg][0] = 0
+            dp[egg][1] = 1
+        }
+        
+        // for 0 egg, we can only try 0 times
+        for(let floor = 0; floor < dp[0].length; floor++)
+        {
+            dp[0][floor] = 0
+            dp[1][floor] = floor
+        }
+        
+        
+        for(let egg = 2; egg <= n; egg++){
+            for(let floor = 1; floor <= k; floor++){
+                // Calculate dp[eggs][floors]
+                
+                let min = Number.POSITIVE_INFINITY
+                for(let i = 1; i<=floor ;i++){
+                    // take min of each cases of dropping from floor 1 to current floor
+                    min = Math.min(min,Math.max( 1+dp[egg-1][i-1], 1+dp[egg][floor-i]))
+                }
+                dp[egg][floor] = min
+                
+            }
+        }
+        
+        return dp[n][k]
+    }
+    
+    console.log(eggDrop(2,10))
+```
