@@ -1,0 +1,25 @@
+.book {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.book h3 {
+  margin-top: 0;
+}
+
+.book p {
+  margin: 5px 0;
+}
+.book-list {
+  list-style: none; /* Remove default bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Additional styling for list items (optional) */
+.book-list li {
+  margin-bottom: 20px; /* Add spacing between list items */
+}
