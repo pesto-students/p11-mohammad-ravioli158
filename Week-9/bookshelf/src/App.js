@@ -1,10 +1,12 @@
 import "./App.css";
 import { BookList } from "./components/BookList";
+import { WithLogging } from "./components/WithLogging";
 
 function App() {
+  const BookListWithLogging = WithLogging(BookList);
   return (
     <div className="App">
-      <BookList />
+      <BookListWithLogging />
     </div>
   );
 }
