@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Book } from "./Book";
+import AddBookForm from "./AddBookForm";
 
 // Functional Component implementation
 // export const BookList = () => {
@@ -7,7 +8,6 @@ import { Book } from "./Book";
 //     { title: "Book 1", author: "Author 1", year: 2020 },
 //     { title: "Book 2", author: "Author 2", year: 2018 },
 //     { title: "Book 3", author: "Author 3", year: 2022 },
-//     // Add more books if you'd like
 //   ];
 //   return (
 //     <ul className="book-list">
@@ -20,24 +20,38 @@ import { Book } from "./Book";
 //   );
 // };
 
-
 // Implemented BookList as Class Component
-export  class BookList extends Component {
+export class BookList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [
+        { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960 },
+        { title: "1984", author: "George Orwell", year: 1949 },
+      ],
+    };
+  }
   render() {
-    const books = [
-      { title: "Book 1", author: "Author 1", year: 2020 },
-      { title: "Book 2", author: "Author 2", year: 2018 },
-      { title: "Book 3", author: "Author 3", year: 2022 },
-      // Add more books if you'd like
-    ];
+    const handleAddBook = (newBook) => {
+      this.setState((prevState) => ({
+        books: [...prevState.books, newBook],
+      }));
+    };
     return (
-      <ul className="book-list">
-        {books.map((book, index) => (
-          <li key={index}>
-            <Book {...book}/>
-          </li>
-        ))}
-      </ul>
+      <div className="booklist-wrapper">
+        <div className="add-form">
+          <AddBookForm handleAddBook={handleAddBook} />
+        </div>
+
+        <ul className="book-list">
+          <h3>Books</h3>
+          {this.state.books.map((book, index) => (
+            <li key={index}>
+              <Book {...book} />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }
