@@ -1,48 +1,65 @@
+/* Set box-sizing to border-box to include padding and border in element's total width. */
 * {
   box-sizing: border-box;
 }
 
+/* Styling for the main app container. */
 .App {
   padding: 20px;
 }
 
+/* Styling for individual book items. */
 .book {
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #f9f9f9;
 }
 
+/* Styling for book titles within book items. */
 .book h3 {
   margin: 0;
 }
 
+/* Styling for paragraphs within book items. */
 .book p {
   margin: 3px 0;
 }
 
-
+/* Media query for screens with minimum width of 760px. */
 @media screen and (min-width: 760px) {
+  /* Styling for the wrapper around the book list. */
   .booklist-wrapper {
     max-width: 600px;
     height: auto;
     margin: auto auto;
   }
-
 }
 
+/* Styling for the book list itself. */
 .book-list {
   text-align: center;
   list-style: none;
   padding: 0;
-  margin: 20;
+  margin: 20; /* This should have a unit, e.g., "20px". */
 }
 
-.book-list li {
+/* Styling for individual book list items. */
+.book-list-item {
   margin-bottom: 20px;
+  position: relative;
 }
 
+/* Styling for the delete and show more button within book list items. */
+.book-details-action {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display:flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
 
-
+/* Styling for the book form container. */
 .bookform {
   background-color: #f5f5f5;
   display: flex;
@@ -51,14 +68,17 @@
   border: 1px solid #ccc;
 }
 
+/* Styling for form groups within the book form. */
 .form-group {
   width: 300px;
-  padding: 5px;
   margin: auto;
+  padding: 5px;
+  display: flex;
+  align-items: center;
 }
 
+/* Styling for labels within the book form. */
 .bookform label {
   display: inline-block;
-  width: 50px;
-  margin: 8px;
+  width: 90px;
 }
