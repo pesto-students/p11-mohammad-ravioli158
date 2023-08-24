@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import BookForm from "./BookForm";
 import BookDetail from "./BookDetail";
-import './BookList.css'
+import "./BookList.css";
+
 // Assiggnment 4: Functional Component for displaying list of books
 export const BookList = () => {
   const [books, setBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     // fetchdata()
-
-    return () => {
-      // Cleanup
-    };
+    setBooks(() => [
+      { id: 1, title: "Book 1", author: "Author 1" },
+      { id: 2, title: "Book 2", author: "Author 2" },
+      // Add more mock book data as needed
+    ]);
   }, []);
+  const filterBooks = (books, searchTerm) => {
+    return books.filter((book) =>
+      book.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+  const filteredBooks = useMemo(
+    () => filterBooks(books, searchTerm),
+    [books, searchTerm]
+  );
 
   // Function to handle adding a new book to the list.
   const handleAddBook = (newBook) => {
@@ -22,6 +34,7 @@ export const BookList = () => {
   const handleDeleteBook = (title) => {
     setBooks((prevBooks) => prevBooks.filter((book) => book.title !== title));
   };
+
   return (
     <div className="App">
       {/* Display the form to add new books. */}
@@ -35,9 +48,20 @@ export const BookList = () => {
           ) : (
             <h3>Books</h3>
           )}
+          {/* Filter Books */}
+          <div>
+            <label htmlFor="search-term">Filter</label>
+            <input
+              name="search-term"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+          </div>
 
           {/* Map through the list of books and render each book item. */}
-          {books.map((book, index) => (
+          {filteredBooks.map((book, index) => (
             <li key={index} className="book-list-item">
               {/* Display book details using BookDetail component. */}
               <BookDetail {...book} handleDeleteBook={handleDeleteBook} />
