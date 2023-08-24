@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './BookDetail.css'
 import {
   MdOutlineExpandLess,
   MdDeleteForever,
@@ -30,9 +31,9 @@ class BookDetail extends Component {
     const { showDetails } = this.state;
 
     return (
-      <div className="book">
+      <div className="book-detail">
         {/* Display basic book information */}
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         <p>Author: {author}</p>
         <p>Year: {year}</p>
 
