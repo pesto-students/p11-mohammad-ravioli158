@@ -1,29 +1,70 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import BookForm from "./BookForm";
 import BookDetail from "./BookDetail";
 import "./BookList.css";
+import useBookFilter from "../hooks/useBookFilter";
+import useBookSorter from "../hooks/useBookSorter";
+import BookSortFilter from "./BookSortFilter";
+
+
 
 // Assiggnment 4: Functional Component for displaying list of books
 export const BookList = () => {
   const [books, setBooks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { filteredBooks, setSearchTerm, searchTerm } = useBookFilter(books);
+  const { sortedBooks, sortingCriteria, setSortingCriteria } =
+    useBookSorter(filteredBooks);
+
   useEffect(() => {
-    // fetchdata()
-    setBooks(() => [
-      { id: 1, title: "Book 1", author: "Author 1" },
-      { id: 2, title: "Book 2", author: "Author 2" },
-      // Add more mock book data as needed
+    // Intial load of books
+    setBooks([
+      {
+        id: 1,
+        title: "The History of Ancient Civilizations",
+        author: "Historian A",
+        year: 2005,
+        genre: "History",
+        description:
+          "Dive into the fascinating journey of human civilizations from their earliest beginnings, exploring the cultures, achievements, and challenges that shaped our world.",
+      },
+      {
+        id: 2,
+        title: "World War II: A Comprehensive Overview",
+        author: "Historian B",
+        year: 2012,
+        genre: "History",
+        description:
+          "Uncover the intricate details of World War II, from its complex origins to its far-reaching consequences, through meticulous research and analysis.",
+      },
+      {
+        id: 3,
+        title: "The Rise and Fall of Empires",
+        author: "Historian C",
+        year: 2018,
+        genre: "History",
+        description:
+          "Trace the grandeur and decline of empires throughout history, examining the political, economic, and cultural factors that led to their ascent and downfall.",
+      },
+      {
+        id: 4,
+        title: "Exploring Archaeological Discoveries",
+        author: "Archaeologist X",
+        year: 2020,
+        genre: "Archaeology",
+        description:
+          "Embark on a journey through time as Archaeologist X uncovers ancient artifacts, lost cities, and forgotten civilizations, shedding light on the mysteries of the past.",
+      },
+      {
+        id: 5,
+        title: "Historical Figures that Shaped Our World",
+        author: "Historian D",
+        year: 2015,
+        genre: "History",
+        description:
+          "Explore the lives and impact of historical figures who have left an indelible mark on our world, shaping the course of history.",
+      },
     ]);
   }, []);
-  const filterBooks = (books, searchTerm) => {
-    return books.filter((book) =>
-      book.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  };
-  const filteredBooks = useMemo(
-    () => filterBooks(books, searchTerm),
-    [books, searchTerm]
-  );
 
   // Function to handle adding a new book to the list.
   const handleAddBook = (newBook) => {
@@ -34,6 +75,14 @@ export const BookList = () => {
   const handleDeleteBook = (title) => {
     setBooks((prevBooks) => prevBooks.filter((book) => book.title !== title));
   };
+  const handleSortCriteriaChange = (critera) => {};
+  // So props to BookSortFilter do not change on every render
+  const cahedSetSearchTerm = useCallback(
+    (value) => {
+      setSearchTerm(value);
+    },
+    [setSearchTerm]
+  );
 
   return (
     <div className="App">
@@ -48,20 +97,17 @@ export const BookList = () => {
           ) : (
             <h3>Books</h3>
           )}
-          {/* Filter Books */}
-          <div>
-            <label htmlFor="search-term">Filter</label>
-            <input
-              name="search-term"
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-              }}
-            />
-          </div>
 
+          {/* Filter And Sort Books */}
+          <BookSortFilter
+            onSortCriteriaChange={handleSortCriteriaChange}
+            searchTerm={searchTerm}
+            setSearchTerm={cahedSetSearchTerm}
+            sortingCriteria={sortingCriteria}
+            setSortingCriteria={setSortingCriteria}
+          />
           {/* Map through the list of books and render each book item. */}
-          {filteredBooks.map((book, index) => (
+          {sortedBooks.map((book, index) => (
             <li key={index} className="book-list-item">
               {/* Display book details using BookDetail component. */}
               <BookDetail {...book} handleDeleteBook={handleDeleteBook} />
