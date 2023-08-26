@@ -6,8 +6,6 @@ import useBookFilter from "../hooks/useBookFilter";
 import useBookSorter from "../hooks/useBookSorter";
 import BookSortFilter from "./BookSortFilter";
 
-
-
 // Assiggnment 4: Functional Component for displaying list of books
 export const BookList = () => {
   const [books, setBooks] = useState([]);

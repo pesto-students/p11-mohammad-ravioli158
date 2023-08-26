@@ -3,6 +3,13 @@
 * {
   box-sizing: border-box;
 }
+body{
+    
+}
+.dark {
+  background-color: #1f2023;
+  color: #efefef;
+}
 
 html,
 body {
