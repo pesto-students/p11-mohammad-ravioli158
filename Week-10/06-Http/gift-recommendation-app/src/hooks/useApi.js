@@ -58,8 +58,8 @@ const useApi = () => {
         });
 
       // Update the recommendations state with the parsed data
-      console.log("got recommendatoins", recommendations);
-      setRecommendations(recommendations);
+      console.log("got recommendatoins", result);
+      setRecommendations(result);
     } catch (error) {
       console.log(error);
       setLoading(false);

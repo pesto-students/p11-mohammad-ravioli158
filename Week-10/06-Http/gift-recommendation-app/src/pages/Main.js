@@ -42,22 +42,19 @@ function Main() {
         showWishlist={showWishlist}
         onToggleShowWishlist={handleWishlistShow}
       />
-      <RecommendationList
-        isLoading={loading}
-        recommendations={recommendations}
-      />
-      {/* {showWishlist ? (
-        <Wishlist
-          wishlist={wishlisted}
-          handleRemove={handleRemoveFromWishlist}
-        />
-      ) : (
+
+      {showWishlist ? (
         <RecommendationList
           isLoading={loading}
           recommendations={recommendations}
           handleAddtoWishlist={handleAddtoWishlist}
         />
-      )} */}
+      ) : (
+        <Wishlist
+          wishlist={wishlisted}
+          handleRemove={handleRemoveFromWishlist}
+        />
+      )}
     </div>
   );
 }
