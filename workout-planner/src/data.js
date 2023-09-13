@@ -1,42 +1,28 @@
-import equipments from "./constants/equipments";
-import muscleOptions from "./constants/mucleOptions";
-import workoutGoals from "./constants/workoutGoals";
 
-// Dummy Data for workout preferences
-const workoutPreferences = {
-  age: 45,
-  gender: "male",
-  targetMuscles: [muscleOptions.Chest, muscleOptions.Arms, muscleOptions.Legs],
-  frequency: 3, // workout sessions per week
-  sessionLength: 30, // duration of each workout session in minutes
-  equipments: [equipments.Barbell, equipments.Dumbells],
-  aim: [workoutGoals.MuscleBuilding],
-};
-
-// Dummy workout plan
-const workoutPlan = {
-  goal: "Muscle building",
-  targetMuscles: ["Chest", "Legs", "Arms", "Abs"],
+// Sample workout plan data
+export let workoutPlan = {
+  goal: 'Muscle building',
+  targetMuscles: ['Chest', 'Legs', 'Arms', 'Abs'],
   frequency: 3,
   avgDuration: 30,
-  workouts: [
+  days: [
     {
-      day: 1, //current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+      day: 1,
       duration: 30,
-      targetMuscles: ["Chest", "Legs", "Arms"],
+      targetMuscles: ['Chest', 'Legs', 'Arms'],
       exercises: [
         {
-          name: "Bench Press",
+          name: 'Bench Press',
           set: 3,
           reps: 10,
         },
         {
-          name: "Squats",
+          name: 'Squats',
           set: 3,
           reps: 10,
         },
         {
-          name: "Bicep Curls",
+          name: 'Bicep Curls',
           set: 3,
           reps: 10,
         },
@@ -45,15 +31,15 @@ const workoutPlan = {
     {
       day: 3,
       duration: 30,
-      targetMuscles: ["Back", "Abs"],
+      targetMuscles: ['Back', 'Abs'],
       exercises: [
         {
-          name: "Pull-Ups",
+          name: 'Pull-Ups',
           set: 3,
           reps: 10,
         },
         {
-          name: "Planks",
+          name: 'Planks',
           set: 3,
           reps: 60,
         },
@@ -62,20 +48,20 @@ const workoutPlan = {
     {
       day: 5,
       duration: 30,
-      targetMuscles: ["Chest", "Legs", "Arms"],
+      targetMuscles: ['Chest', 'Legs', 'Arms'],
       exercises: [
         {
-          name: "Dumbbell Bench Press",
+          name: 'Dumbbell Bench Press',
           set: 3,
           reps: 10,
         },
         {
-          name: "Leg Press",
+          name: 'Leg Press',
           set: 3,
           reps: 10,
         },
         {
-          name: "Tricep Dips",
+          name: 'Tricep Dips',
           set: 3,
           reps: 10,
         },
@@ -84,4 +70,3 @@ const workoutPlan = {
   ],
 };
 
-export { workoutPreferences, workoutPlan };
