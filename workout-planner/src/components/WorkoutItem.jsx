@@ -12,7 +12,7 @@ const WorkoutItem = ({ day }) => {
   // }, [workout.day]);
 
   return (
-    <a >
+    <Link to={`/plan/${day}`}>
       <article
       className={`mt-3 workout-itFsem rounded shadow-lg flex flex-row justify-between p-4 ${
         isActive ? "text-white bg-blue-500" : "text-blue-500 bg-white"
@@ -21,7 +21,7 @@ const WorkoutItem = ({ day }) => {
       <h2 className="font-semibold">{weekDays[day]}</h2>
       
     </article>
-    </a>
+    </Link>
   );
 };
 
