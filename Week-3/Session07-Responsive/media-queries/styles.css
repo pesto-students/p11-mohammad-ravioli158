@@ -1,0 +1,141 @@
+:root {
+  --theme-color: #7395ae;
+  --theme-dark-color: #557a95;
+  --primary-font-color: #5d5c61;
+  --link-font-color: white;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  color: var(--primary-font-color);
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--theme-dark-color);
+}
+
+header {
+  margin: 0;
+}
+
+header>h1 {
+  color: var(--theme-dark-color);
+  font-size: 2rem;
+  margin: 10px 0;
+  text-shadow: 2px 2px 3px gray;
+}
+
+nav {
+  background-color: var(--theme-color);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+nav li {
+  padding: 10px 0;
+}
+
+nav li a {
+  padding: 10px 20px;
+  color: var(--link-font-color);
+}
+
+nav li a:hover {
+  background-color: var(--theme-dark-color);
+}
+
+nav {
+  font-size: larger;
+}
+
+main {
+  margin: 0;
+}
+
+main>section {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.benefits-inner-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.benefits-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit {
+  color: var(--theme-dark-color);
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.vacation-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.vacation-container img {
+  width: 95%;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 600px) {
+  /* This media query applies styles for screens up to 600px wide */
+
+  /* Arrange benefits-inner-container into a row using flex */
+  .benefits-container {
+
+    /* Display & Box Model */
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 700px) {
+
+  /* This media query applies styles for screens up to 700px wide  */
+  nav li {
+    /* Display & Box Model */
+    display: inline-block;
+  }
+
+  /* Heading */
+  header>h1 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  /* This media query applies styles for screens up to 800px wide  */
+
+  .vacation-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+  }
+
+  .vacation-container>img {
+
+    /* Display & Box Model */
+    height: auto;
+    padding: 10px;
+    max-inline-size: 50%;
+  }
+
+  .vacation-container>div {
+    /* Display & Box Model */
+    flex-basis: 50%;
+    padding: 5px;
+  }
+}

@@ -1,0 +1,30 @@
+/* common css for all html pages */
+body {
+  min-height: 100%;
+}
+footer {
+}
+.fa-star,
+.fa-star-half-o {
+  color: orange;
+}
+/* Style for Navigation */
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.navigation li {
+  display: inline-block;
+}
+.navigation a {
+  color: #3366cc;
+  padding: 5px;
+}
+a {
+  color: #3366cc;
+}
+.star-rating {
+  padding-top: 8px;
+}

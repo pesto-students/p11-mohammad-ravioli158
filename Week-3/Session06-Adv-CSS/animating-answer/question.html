@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Question and Answer</title>
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            font-size: 3em;
+        }
+
+        #answer {
+            visibility: hidden;
+            color: black;
+            width: 100px;
+            /* Position relative so that element can be animated respective to
+            * it's original location
+             */
+            position: relative;
+            /* moveFraction takes 2 seconds */
+            animation: moveFraction 2s;
+            /* Keep the final keyframe color and position */
+            animation-fill-mode: forwards;
+            /* delay animation by 1 second */
+            animation-delay: 1s;
+        }
+
+        /* moveFraction keyframes to move answer from left-under of question to it's correction position */
+        @keyframes moveFraction {
+            0% {
+                visibility: visible;
+                color: yellow;
+                top: 40px;
+                left: -500px;
+            }
+
+            50% {
+                top: 40px;
+                left: 0px;
+            }
+
+            100% {
+                visibility: visible;
+                color: red;
+                top: 0px;
+                left: 0xp;
+            }
+        }
+
+        #question {
+            /* Perform transform transition in 0.6sec with ease in out curve */
+            transition: transform 0.6s ease-in-out;
+        }
+
+        #question:hover {
+            /* on hover it to 0.9 of original size */
+            transform: scale(0.9)
+        }
+
+        span {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="question">Question: &frac14; + &frac12; =</span>
+    <span id="answer">&frac34;</span>
+</body>
+
+</html>
