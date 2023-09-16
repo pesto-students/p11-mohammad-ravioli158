@@ -11,4 +11,5 @@ const store =  configureStore({
 })
 
 export const persistor = persistStore(store); // Create a persistor object
+
 export default store

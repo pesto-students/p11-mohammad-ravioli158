@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { fetchWorkoutPlan } from '../store/workoutPlanSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { fetchWorkoutPlan } from "../store/workoutPlanSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Button from "../UI/Button";
 const CreatePlan = () => {
   const [section, setSection] = useState(1);
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [goal, setGoal] = useState('');
-  const [frequency, setFrequency] = useState('');
-  const [avgDuration, setAvgDuration] = useState('');
-  const dispatch = useDispatch()
-  const loading = useSelector(state => state.loading)
-  const navigate = useNavigate()
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [goal, setGoal] = useState("");
+  const [frequency, setFrequency] = useState("");
+  const [avgDuration, setAvgDuration] = useState("");
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     // Check if we are in section 1
     if (section === 1) {
       // Validate inputs for section 1
       if (!name || !age || !gender) {
-        alert('Please fill in all fields');
+        alert("Please fill in all fields");
         return;
       }
     }
-    
+
     // Proceed to the next section
     setSection(section + 1);
   };
@@ -41,25 +42,25 @@ const CreatePlan = () => {
       avgDuration,
     };
 
-
     console.log(preferences);
-    
-    // Fetch plan
-    await dispatch(fetchWorkoutPlan(preferences))
-    navigate('/plan')
-  };
 
-  
+    // Fetch plan
+    await dispatch(fetchWorkoutPlan(preferences));
+    navigate("/plan");
+  };
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">
-      <p >We need some information to recommend the best plan for you</p>
-      <form onSubmit={handleFormSubmit} className='mt-4'>
+      <p>We need some information to recommend the best plan for you</p>
+      <form onSubmit={handleFormSubmit} className="mt-4">
         {section === 1 && (
           <div>
             {/* section 1: Name, Age, Gender */}
             <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 font-semibold">
+              <label
+                htmlFor="name"
+                className="block text-gray-700 font-semibold"
+              >
                 Name
               </label>
               <input
@@ -73,7 +74,10 @@ const CreatePlan = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="age" className="block text-gray-700 font-semibold">
+              <label
+                htmlFor="age"
+                className="block text-gray-700 font-semibold"
+              >
                 Age
               </label>
               <input
@@ -87,7 +91,10 @@ const CreatePlan = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="gender" className="block text-gray-700 font-semibold">
+              <label
+                htmlFor="gender"
+                className="block text-gray-700 font-semibold"
+              >
                 Gender
               </label>
               <select
@@ -109,7 +116,10 @@ const CreatePlan = () => {
           <div>
             {/* section 2: Workout Plan Goal, Frequency, Average Duration */}
             <div className="mb-4">
-              <label htmlFor="goal" className="block text-gray-700 font-semibold">
+              <label
+                htmlFor="goal"
+                className="block text-gray-700 font-semibold"
+              >
                 Workout Plan Goal
               </label>
               <select
@@ -126,7 +136,10 @@ const CreatePlan = () => {
               </select>
             </div>
             <div className="mb-4">
-              <label htmlFor="frequency" className="block text-gray-700 font-semibold">
+              <label
+                htmlFor="frequency"
+                className="block text-gray-700 font-semibold"
+              >
                 Frequency (per week)
               </label>
               <select
@@ -145,7 +158,10 @@ const CreatePlan = () => {
               </select>
             </div>
             <div className="mb-4">
-              <label htmlFor="avgDuration" className="block text-gray-700 font-semibold">
+              <label
+                htmlFor="avgDuration"
+                className="block text-gray-700 font-semibold"
+              >
                 Average Duration (minutes)
               </label>
               <input
@@ -170,7 +186,7 @@ const CreatePlan = () => {
               Next
             </button>
           ) : (
-            <div>
+            <div className="flex">
               <button
                 type="button"
                 onClick={() => setSection(section - 1)}
@@ -178,13 +194,15 @@ const CreatePlan = () => {
               >
                 Previous
               </button>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-                disabled={loading}
+              <Button
+                className={
+                  "h-10 w-50 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                }
+                type={"submit"}
+                loading={loading}
               >
-                Generate Workout Plan
-              </button>
+                Generate
+              </Button>
             </div>
           )}
         </div>

@@ -11,13 +11,17 @@ const initialState = {
  // Fetch workout plan
  const fetchWorkoutPlan = createAsyncThunk('workoutPlan/fetchWorkout', async (preferences, {rejectWithValue}) => {
     try {
-        // Mock workout api
-        const response = await axios.get('https://mocki.io/v1/ba99f198-a5e7-4ac5-a0ae-563e7992b35b')
-        return response.data
+        // Simulate a 1-second delay
+        await new Promise(resolve => setTimeout(resolve, 6000));
+
+        // Mock workout API
+        const response = await axios.get('https://mocki.io/v1/ba99f198-a5e7-4ac5-a0ae-563e7992b35b');
+        return response.data;
     } catch (error) {
-        rejectWithValue(error.message)
+        rejectWithValue(error.message);
     }
- })
+});
+
 
 
 
