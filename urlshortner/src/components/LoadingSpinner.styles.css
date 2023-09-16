@@ -1,0 +1,40 @@
+.loading-spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.loading-spinner {
+  text-align: center;
+  background-color: white; /* Background color for the spinner */
+  border-radius: 8px; /* Rounded corners for the spinner container */
+  padding: 20px;
+  position: relative;
+  z-index: 1001; /* Make sure spinner is above the interaction blocker */
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+.interaction-blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000; /* Higher z-index to capture interactions */
+}
+
