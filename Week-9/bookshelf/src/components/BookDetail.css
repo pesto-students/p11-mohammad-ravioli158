@@ -1,0 +1,10 @@
+.book-detail{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+}
+.book-details-action{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
