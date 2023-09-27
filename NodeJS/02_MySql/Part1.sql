@@ -118,6 +118,9 @@ create table OrderItems (
     ONo int,
     ItemNo int,
     Quantity int,
+
+
+    
     primary key(Ono, ItemNo),
     foreign key (ItemNo) references Items(ItemNo),
     foreign key (ONo) references Orders(ONo)

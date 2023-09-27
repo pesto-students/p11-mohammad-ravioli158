@@ -8,7 +8,7 @@ In this assignment, you need to design and create a Warehouse Database. The data
 4. CUSTOMER (CNO INTEGER, CNAME CHAR(50), ADDR VARCHAR(50), CU_CITY CHAR(20))
 5. ORDERS (ONO INT, ODATE DATE)
 6. ITEMS (ITEMNO INTEGER, DESCRIPTION TEXT, WEIGHT DECIMAL(5,2), COST DECIMAL(5,2))
-
+  OrderItems(ONo int, ItemNo int, Quantity int)
 Feel free to create more tables or add more columns to the tables if required. The table design should follow the following relationships between the tables:
 
 - CITIES - WAREHOUSES: 1 to Many (1:M)
