@@ -5,12 +5,12 @@ const sequelize = require("../config/db.config");
 const TaskModel = sequelize.define("Task", {
   title: {
     type: Sequelize.DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   description: Sequelize.STRING,
   status: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
   },
 });
 

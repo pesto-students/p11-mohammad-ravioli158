@@ -1,7 +1,7 @@
 // Setup Express App
 const express = require("express");
 const cors = require("cors");
-
+const path = require("path");
 // Setup Database
 const sequelize = require("./config/db.config");
 async function initializeDatabase() {
@@ -19,21 +19,29 @@ const app = express();
 /**
  * Middlewares
  */
-
-// Log request details
+const errorHandler = require("./middlewares/errorHandler");
+const logger = require("./middlewares/logger");
 
 var corsOptions = {
   origin: "http://localhost:8081",
 };
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, "public")));
+// logger
+app.use(logger);
 // allow cross origin requests
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(express.json());
+app.use(errorHandler);
 
 /**
  * Routes
  */
 const tasksRoutes = require("./routes/tasks.routes");
-app.use("/tasks", tasksRoutes);
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+app.use("/api/tasks", tasksRoutes);
 // Export the express app instance
 module.exports = app;
