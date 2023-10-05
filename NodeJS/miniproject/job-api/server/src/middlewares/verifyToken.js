@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken')
 const secretKey = process.env.SECRETE_KEY
 
 module.exports = verifyToken = (req, res, next) => {
-    console.log('verifying token', req.cookies.jwtToken)
-    const token = req.cookies.jwtToken
+    // console.log('verifying token', req.cookies, req.headers)
+    const token = req.headers.authorization
     if (!token) {
         return res.status(403).send({
             message: 'No token provided!'

@@ -32,11 +32,10 @@ async function SignIn(req, res) {
         }
         // Generate Jwt token
         const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { algorithm: 'HS256', allowInsecureKeySizes: true, expiresIn: 86400 })
-        // Send token as cookie
-        res.cookie('jwtToken', token, { httpOnly: true }); 
-        return res.json({ id: user.id, email: user.email, authenticated: true});
+        
+        return res.json({ id: user.id, email: user.email, authenticated: true, jwt: token});
     } catch (error) {
-        return res.status(400).json({ message: 'Error while sign in' });
+        return res.status(400).json({ message: `Error while sign in. ${error.message}` });
     }
 }
 // Todo: Implement signout

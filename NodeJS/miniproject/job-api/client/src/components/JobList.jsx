@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import JobItem from "./JobItem";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
 
 function JobList() {
   const [jobs, setJobs] = useState([]);
@@ -13,14 +12,19 @@ function JobList() {
   const [maxSalary, setMaxSalary] = useState(300000);
   const handlePageChange = (newPage) => {
     // page change logic
+    if (newPage >= 0 && newPage <= maxPage) setCurrentPage(newPage);
   };
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
+        // TODO: Move URL to separate file
         const url = `http://localhost:5000/api/jobs?page=${currentPage}&tags=${tags}&sortByDate=${sort}&salary_min=${minSalary}&salary_max=${maxSalary}`;
-        console.log(url);
-        const response = await axios.get(url, { withCredentials: true });
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: window.localStorage.getItem("jwt"),
+          },
+        });
         setJobs(response.data.jobs);
         setMaxPage(response.data.pagination.totalPages);
       } catch (error) {
@@ -34,6 +38,7 @@ function JobList() {
     <div className="p-4">
       <div className="p-4">
         {/* Filter and sort */}
+        {/* TODO: Create Separate Component for Filters/Sort */}
         <div className="mb-4">
           <input
             type="text"
@@ -77,7 +82,7 @@ function JobList() {
       <h2 className="text-2xl font-semibold mb-4">Job Listings</h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {jobs.map((job) => (
-          <JobItem job={job} />
+          <JobItem key={job.slug} job={job} />
         ))}
       </div>
 

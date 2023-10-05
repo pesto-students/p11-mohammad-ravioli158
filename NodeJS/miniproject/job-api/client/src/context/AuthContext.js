@@ -18,7 +18,8 @@ export const AuthProvider = ({ children }) => {
         try {
             const loginData = {
                 email: "ravi@gmail.com",
-                password: "1234"
+                password: "1234",
+                
             }
             const response = await axios.post('http://localhost:5000/api/auth/signin', loginData, {
                 headers: {
@@ -28,6 +29,7 @@ export const AuthProvider = ({ children }) => {
             console.log("response is", response.data)
             if (response.data.authenticated) {
                 setAuthenticated(true)
+                window.localStorage.setItem("jwt", response.data.jwt)
                 Navigate("/")
             }   
         } catch (error) {
